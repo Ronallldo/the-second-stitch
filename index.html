@@ -484,12 +484,8 @@
                         <div><strong>Email</strong><br>lokuraadi@gmail.com</div>
                     </div>
                     <div class="contact-item">
-                        <span class="icon">📱</span>
-                        <div><strong>Instagram</strong><br>@thesecondstitch.ignis</div>
-                    </div>
-                    <div class="contact-item">
                         <span class="icon">📍</span>
-                        <div><strong>Studio</strong><br>The Ignis Design Studio</div>
+                        <div><strong>Studio</strong><br>Ignis Studio PIS Ambegaon</div>
                     </div>
                     <h3 style="margin-top:30px;">Clothing Drop-Off</h3>
                     <p style="color:#666;">Want to donate old clothes? Drop them off at our community collection points or contact us to arrange a pickup. Every garment you donate is a garment saved from landfill.</p>
@@ -553,7 +549,6 @@
             </div>
             <div class="footer-links">
                 <h4>Connect</h4>
-                <a href="#">Instagram</a>
                 <a href="#">Email Us</a>
                 <a href="#">Donate Clothes</a>
             </div>
@@ -642,7 +637,8 @@
                 return;
             }
             try {
-                const response = await fetch(SHEET_CSV_URL);
+                // Add a timestamp to bypass browser caching
+                const response = await fetch(SHEET_CSV_URL + '&t=' + new Date().getTime());
                 const csv = await response.text();
                 const products = parseCSV(csv);
                 renderProducts(products.length > 0 ? products : fallbackProducts);
