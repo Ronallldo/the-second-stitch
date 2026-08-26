@@ -3,531 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Second Stitch â€” Your Old Clothes, Our New Craft</title>
+    <title>The Second Stitch | The Art of Rebirth</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --charcoal: #333333;
-            --sage: #FF3D00;
-            --sage-light: #a8b89e;
-            --orange: #FF5A00;
-            --bg: #0d0d0d;
-            --white: #1a1a1a;
-            --cream: #252525;
+            --bg: #F9F7F4;
+            --charcoal: #1c1c1c;
+            --orange: #c65d3e; 
+            --orange-dark: #a84d32;
+            --warm-light: #e3d3cc;
+            --white: #ffffff;
+            --cream: #f0ede8;
         }
-        body { font-family: 'Lato', sans-serif; color: var(--charcoal); background: var(--bg); line-height: 1.7; }
-
+        body { font-family: 'Lato', sans-serif; color: var(--charcoal); background: var(--bg); line-height: 1.7; margin: 0; padding: 0; }
+        
         /* NAVIGATION */
-        nav { position: fixed; top: 0; width: 100%; background: rgba(13,13,13,0.95); backdrop-filter: blur(10px); z-index: 1000; padding: 15px 0; border-bottom: 1px solid rgba(122,139,111,0.2); transition: all 0.3s ease; }
+        nav { position: fixed; top: 0; width: 100%; background: rgba(249,247,244,0.95); backdrop-filter: blur(10px); z-index: 1000; padding: 15px 0; border-bottom: 1px solid rgba(198,93,62,0.2); transition: all 0.3s ease; }
         nav.scrolled { padding: 10px 0; box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; }
         .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--charcoal); text-decoration: none; letter-spacing: 1px; }
-        .nav-logo span { color: var(--sage); }
-        .nav-links { display: flex; list-style: none; gap: 35px; }
+        .nav-logo span { color: var(--orange); }
+        .nav-links { display: flex; list-style: none; gap: 35px; margin: 0; padding: 0;}
         .nav-links a { text-decoration: none; color: var(--charcoal); font-size: 0.9rem; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; position: relative; }
         .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--orange); transition: width 0.3s; }
         .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-        .nav-links a:hover { color: var(--sage); }
-        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
-        .hamburger span { width: 25px; height: 2px; background: #000000; transition: all 0.3s; }
-
+        .nav-links a:hover { color: var(--orange); }
+        
         /* GENERAL */
         section { padding: 100px 40px; }
         .container { max-width: 1100px; margin: 0 auto; }
-        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; margin-top: 0; }
         h1 { font-size: 3.5rem; line-height: 1.2; }
         h2 { font-size: 2.2rem; margin-bottom: 25px; line-height: 1.3; }
         h3 { font-size: 1.4rem; margin-bottom: 15px; }
         p { margin-bottom: 18px; font-size: 1.05rem; }
         .btn { display: inline-block; padding: 14px 35px; border: none; border-radius: 50px; font-size: 0.95rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: all 0.3s ease; }
         .btn-primary { background: var(--orange); color: white; }
-        .btn-primary:hover { background: #b5523a; transform: translateY(-2px); box-shadow: 0 0 20px 5px rgba(198,93,62,0.6); text-shadow: 0 0 5px rgba(255,255,255,0.4); }
+        .btn-primary:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(198,93,62,0.3); }
         .section-label { text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; color: var(--orange); margin-bottom: 10px; }
-
+        
         /* HERO */
         #home { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; padding-top: 80px; }
         .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
         .hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.35); }
         .hero-content { position: relative; z-index: 2; text-align: center; color: white; max-width: 800px; margin: 0 auto; }
-        .hero-content .logo-img { width: 320px; margin: 0 auto 30px; border-radius: 12px; background: rgba(0,0,0,0.8); box-shadow: 0 0 40px rgba(255, 90, 0, 0.4); padding: 20px; }
-        .hero-content .tagline { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.5rem; color: var(--sage-light); margin-bottom: 35px; }
+        .hero-content .logo-img { width: 320px; margin: 0 auto 30px; border-radius: 12px; background: rgba(255,255,255,0.95); padding: 20px; }
+        .hero-content .tagline { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.5rem; color: var(--warm-light); margin-bottom: 35px; }
         .hero-content p { font-size: 1.15rem; opacity: 0.9; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
-
+        
         /* MISSION */
         .mission { text-align: center; background: var(--white); }
-        .mission h2 { font-size: 2rem; max-width: 800px; margin: 0 auto 30px; color: var(--sage); }
-        .mission p { max-width: 750px; margin: 0 auto 18px; color: #bbbbbb; }
-
+        .mission h2 { font-size: 2rem; max-width: 700px; margin: 0 auto 30px; color: var(--charcoal); }
+        .mission p { max-width: 750px; margin: 0 auto 18px; color: #555; }
+        
         /* HOW IT WORKS */
         .how-it-works { background: var(--bg); text-align: center; }
-        .process-img { width: 100%; max-width: 900px; margin: 40px auto; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
-        .process-img img { width: 100%; display: block; }
         .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 50px; }
         .step-card { padding: 35px 25px; background: var(--white); border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); transition: transform 0.3s; }
         .step-card:hover { transform: translateY(-5px); }
-        .step-number { width: 50px; height: 50px; background: var(--sage); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin: 0 auto 20px; }
-        .step-card h3 { color: var(--charcoal); font-size: 1.2rem; }
-        .step-card p { color: #aaaaaa; font-size: 0.95rem; }
-
-        /* STATS */
-        .impact-preview { background: var(--white); text-align: center; }
-        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 50px; }
-        .stat-card { padding: 40px 20px; border-radius: 16px; background: var(--bg); transition: transform 0.3s; }
-        .stat-card:hover { transform: translateY(-5px); }
-        .stat-icon { font-size: 2.5rem; margin-bottom: 15px; }
-        .stat-number { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 700; color: var(--sage); }
-        .stat-card:nth-child(2) .stat-number { color: #4a8b9b; }
-        .stat-card:nth-child(3) .stat-number { color: var(--orange); }
-        .stat-label { font-size: 1rem; color: #aaaaaa; margin-top: 8px; }
+        .step-number { width: 50px; height: 50px; background: var(--orange-dark); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin: 0 auto 20px; }
+        
+        /* COMPARISON SLIDER */
+        .comparison-section { background: var(--white); text-align: center; }
+        .slider-wrapper { position: relative; width: 100%; max-width: 800px; margin: 40px auto; aspect-ratio: 1/1; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        .slider-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .slider-image img { width: 100%; height: 100%; object-fit: cover; }
+        .before-image { width: 50%; overflow: hidden; z-index: 2; border-right: 3px solid white; }
+        .slider-range { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; z-index: 10; cursor: ew-resize; }
+        .slider-button { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--charcoal); z-index: 5; pointer-events: none; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .slider-label { position: absolute; top: 20px; padding: 5px 15px; background: rgba(0,0,0,0.6); color: white; border-radius: 20px; font-size: 0.8rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; z-index: 3; }
+        .slider-label.left { left: 20px; }
+        .slider-label.right { right: 20px; }
 
         /* CTA */
-        .cta-banner { background: linear-gradient(135deg, #FF5A00 0%, #8A1C00 100%); text-align: center; color: white; padding: 80px 40px; }
-        .cta-banner h2 { color: white; font-size: 2.2rem; }
-        .cta-banner p { opacity: 0.9; font-size: 1.1rem; margin-bottom: 30px; }
-
-        /* ABOUT */
-        .about-hero { position: relative; min-height: 50vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .about-hero img { position: absolute; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4); }
-        .about-hero h1 { position: relative; z-index: 2; color: white; font-size: 3.5rem; text-shadow: 0 2px 20px rgba(0,0,0,0.3); }
-        .about-origin { background: var(--white); }
-        .about-origin .highlight { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; color: var(--sage); border-left: 4px solid var(--orange); padding-left: 20px; margin: 30px 0; }
-        .philosophy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
-        .philosophy-card { padding: 35px; background: var(--bg); border-radius: 16px; border-top: 4px solid var(--sage); }
-        .philosophy-card:nth-child(2) { border-top-color: var(--orange); }
-        .philosophy-card:nth-child(3) { border-top-color: #4a8b9b; }
-        .philosophy-card p { color: #bbbbbb; font-size: 0.95rem; }
-
-        /* CRISIS */
-        .crisis { background: #000000; color: white; }
-        .crisis h2 { color: #FF5A00; }
-        .crisis-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin: 40px 0; }
-        .crisis-stat { padding: 30px; background: rgba(255,255,255,0.05); border-radius: 12px; border-left: 4px solid var(--orange); }
-        .crisis-stat .number { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--orange); }
-        .crisis-stat p { color: rgba(255,255,255,0.8); font-size: 0.95rem; }
-        .crisis .closing { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-style: italic; color: var(--sage-light); text-align: center; margin-top: 40px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
-
+        .cta-banner { background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%); text-align: center; color: white; padding: 80px 40px; }
+        .cta-banner h2 { color: white; }
+        
         /* PRODUCTS */
-        .products-hero { text-align: center; background: var(--white); }
-        .gallery-img { width: 100%; border-radius: 16px; overflow: hidden; margin: 40px 0; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-        .gallery-img img { width: 100%; display: block; }
+        .products-hero { text-align: center; background: var(--bg); }
         .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-top: 30px; }
-        .product-card { padding: 30px; background: var(--bg); border-radius: 16px; transition: all 0.3s; border: 1px solid transparent; text-align: left; }
-        .product-card:hover { border-color: var(--sage); transform: translateY(-3px); }
-        .product-card .tag { display: inline-block; background: var(--sage); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
-        .product-card p { color: #aaaaaa; font-size: 0.9rem; }
-
-        /* CRAFT */
-        .craft-process { background: var(--bg); }
-        .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; margin-top: 40px; }
-        .process-step { text-align: center; padding: 30px 20px; background: var(--white); border-radius: 16px; position: relative; }
-        .process-step::after { content: 'â†’'; position: absolute; right: -18px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: var(--sage); }
-        .process-step:last-child::after { display: none; }
-        .process-step .step-icon { font-size: 2rem; margin-bottom: 15px; }
-        .process-step h3 { font-size: 1.1rem; color: var(--sage); }
-        .process-step p { font-size: 0.85rem; color: #aaaaaa; }
-
-        /* CUSTOM */
-        .custom-service { background: linear-gradient(135deg, #FF3D00 0%, #520000 100%); color: white; text-align: center; }
-        .custom-service h2 { color: white; }
-        .custom-service p { max-width: 700px; margin: 0 auto 18px; opacity: 0.95; }
-        .custom-service .examples { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; margin: 25px 0 30px; }
-
-        /* COMPARISON */
-        .comparison { background: var(--white); }
-        .comparison table { width: 100%; border-collapse: collapse; margin-top: 30px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
-        .comparison th, .comparison td { padding: 18px 20px; text-align: left; font-size: 0.95rem; }
-        .comparison thead { background: #000000; color: white; }
-        .comparison thead th:nth-child(2) { color: #ff9a8b; }
-        .comparison thead th:nth-child(3) { color: var(--sage-light); }
-        .comparison tbody tr { border-bottom: 1px solid #222; }
-        .comparison tbody tr:nth-child(even) { background: var(--bg); }
-        .comparison tbody tr:hover { background: #2a1105; }
-        .comparison td:first-child { font-weight: 700; }
-        .comparison td:nth-child(2) { color: #999; }
-        .comparison td:nth-child(3) { color: var(--sage); font-weight: 600; }
-
-        /* STORIES */
-        .stories { background: var(--bg); }
-        .story-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 40px; }
-        .story-card { padding: 35px; background: var(--white); border-radius: 16px; border-left: 4px solid var(--orange); box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
-        .story-card .quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; color: var(--charcoal); margin-bottom: 15px; }
-        .story-card .story-text { color: #aaaaaa; font-size: 0.9rem; }
-
-        /* CONTACT */
-        .contact-section { background: var(--white); }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 40px; }
-        .contact-item { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; padding: 15px 20px; background: var(--bg); border-radius: 12px; }
-        .contact-item .icon { font-size: 1.5rem; }
-        .contact-form { background: var(--bg); padding: 40px; border-radius: 16px; }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 8px; }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px 16px; border: 2px solid #333; border-radius: 10px; font-family: 'Lato', sans-serif; font-size: 0.95rem; transition: border-color 0.3s; background: #222222; color: #fff; }
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--sage); }
-        .form-group textarea { resize: vertical; min-height: 120px; }
-
+        .product-card { padding: 30px; background: var(--white); border-radius: 16px; transition: all 0.3s; border: 1px solid transparent; text-align: left; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+        .product-card:hover { border-color: var(--orange-dark); transform: translateY(-3px); }
+        .product-card .tag { display: inline-block; background: var(--orange-dark); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+        
         /* FOOTER */
-        footer { background: #000000; color: #eeeeee; padding: 60px 40px 30px; }
+        footer { background: var(--charcoal); color: white; padding: 60px 40px 30px; }
         .footer-content { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; }
-        .footer-brand h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 10px; }
-        .footer-brand p { color: #aaaaaa; font-size: 0.9rem; }
-        .footer-links h4 { font-family: 'Lato', sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; margin-bottom: 20px; color: var(--sage-light); }
-        .footer-links a { display: block; color: #aaaaaa; text-decoration: none; margin-bottom: 10px; font-size: 0.9rem; transition: color 0.3s; }
-        .footer-links a:hover { color: white; }
-        .footer-bottom { max-width: 1100px; margin: 40px auto 0; padding-top: 25px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; color: #666666; font-size: 0.85rem; }
+        .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--orange); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); text-align: center; color: rgba(255,255,255,0.4); margin-top: 40px; padding-top: 25px; }
         .footer-bottom .heart { color: var(--orange); }
-
-        /* ANIMATIONS */
-        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
+        
+        /* UTILS */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-        /* MOBILE */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hamburger { display: flex; }
-            .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 60px; left: 0; width: 100%; background: var(--bg); padding: 20px 40px; gap: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-            h1 { font-size: 2.2rem; }
-            h2 { font-size: 1.6rem; }
-            .hero-content h1 { font-size: 2.5rem; }
-            .hero-content .tagline { font-size: 1.1rem; }
-            .hero-content .logo-img { width: 220px; }
-            .steps-grid, .stats-grid, .philosophy-grid, .product-grid, .story-grid, .contact-grid, .footer-content { grid-template-columns: 1fr; }
-            .crisis-stats { grid-template-columns: 1fr; }
-            .process-steps { grid-template-columns: 1fr 1fr; }
-            .process-step::after { display: none; }
-            section { padding: 60px 20px; }
-        }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGATION -->
+    <!-- NAVBAR -->
     <nav id="navbar">
         <div class="nav-container">
-            <a href="#home" class="nav-logo">THE SECOND <span>STITCH</span></a>
+            <a href="#home" class="nav-logo">SECOND<span>STITCH</span></a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#products">Products</a></li>
-                <li><a href="#impact">Impact</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="hamburger" onclick="toggleMenu()">
-                <span></span><span></span><span></span>
-            </div>
         </div>
     </nav>
 
-    <!-- ====== HERO ====== -->
+    <!-- HERO -->
     <section id="home">
-        <div class="hero-bg">
-            <img src="images/hero_banner.jpg" alt="Upcycled fashion flatlay">
-        </div>
-        <div class="hero-content container">
-            <img src="images/logo.jpg" alt="The Second Stitch Logo" class="logo-img">
-            <p class="tagline">From the Ashes of Fast Fashion, True Style is Reborn.</p>
-            <p>We transform discarded garments into one-of-a-kind masterpieces â€” handcrafted with intention, not mass production.</p>
-            <a href="#products" class="btn btn-primary">Step Into The Forge</a>
+        <div class="hero-bg"><img src="images/hero_banner.jpg" alt="Vintage fabrics"></div>
+        <div class="hero-content fade-in">
+            <div class="logo-img"><img src="images/logo.jpg" alt="The Second Stitch Logo" style="width:100%; display:block;"></div>
+            <p class="tagline">The Art of Rebirth.</p>
+            <h1>Sustainable Elegance.</h1>
+            <p>Every garment tells a story. We transform premium pre-owned textiles into 1-of-1 sustainable masterworks for the conscious individual.</p>
+            <a href="#products" class="btn btn-primary">Explore Our Craft</a>
         </div>
     </section>
 
-    <!-- ====== MISSION ====== -->
-    <section class="mission fade-in">
+    <!-- COMPARISON SLIDER (WOW FACTOR) -->
+    <section id="about" class="comparison-section fade-in">
         <div class="container">
-            <h2>We Don't See Old Clothes.<br>We See Stories Waiting for a Second Act.</h2>
-            <p>The Second Stitch is more than a fashion brand â€” it's a movement. Born in the Ignis design studio, we take discarded garments and transform them into one-of-a-kind masterpieces that honour the memories woven into every thread.</p>
-            <p>In a world drowning in fast fashion waste, we choose a different path. We choose craft over consumption. Stories over seasons. The second stitch.</p>
+            <p class="section-label">The Transformation</p>
+            <h2>Slide to Reveal The Magic</h2>
+            <p>Drag the slider to see how we take discarded materials and elevate them into high-fashion art.</p>
+            
+            <div class="slider-wrapper">
+                <div class="slider-image">
+                    <img src="images/after_jacket.jpg" alt="After Upcycling">
+                </div>
+                <div class="slider-image before-image" id="beforeImage">
+                    <img src="images/before_jacket.jpg" alt="Before Upcycling">
+                </div>
+                <div class="slider-label left">The Ashes</div>
+                <div class="slider-label right">The Phoenix</div>
+                <input type="range" min="0" max="100" value="50" class="slider-range" id="sliderRange">
+                <div class="slider-button" id="sliderBtn">↔</div>
+            </div>
         </div>
     </section>
 
-    <!-- ====== HOW IT WORKS ====== -->
+    <!-- HOW IT WORKS -->
     <section class="how-it-works fade-in">
         <div class="container">
-            <p class="section-label">Our Process</p>
-            <h2>How It Works</h2>
-            <div class="process-img">
-                <img src="images/how_it_works.jpg" alt="Donate Transform Wear process">
-            </div>
+            <p class="section-label">The Process</p>
+            <h2>The Art of Rebirth</h2>
             <div class="steps-grid">
                 <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>Donate</h3>
-                    <p>Drop off your old, worn, or forgotten clothes at our community collection points. Every garment has potential.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>Transform</h3>
-                    <p>Our artisans deconstruct, reimagine, and handcraft your fabric into a brand-new design using patchwork, embroidery, and fabric fusion.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>Wear</h3>
-                    <p>Receive a garment that's uniquely yours â€” a wearable piece of art with a story, not a barcode.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ====== IMPACT STATS ====== -->
-    <section class="impact-preview fade-in">
-        <div class="container">
-            <p class="section-label" style="text-align:center;">Our Impact So Far</p>
-            <h2 style="text-align:center;">The Numbers That Matter</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon">ðŸ§¥</div>
-                    <div class="stat-number">150+</div>
-                    <div class="stat-label">Garments Rescued from landfills and given new life</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">ðŸ’§</div>
-                    <div class="stat-number">405,000L</div>
-                    <div class="stat-label">Litres of Water Saved by reusing existing fabrics</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">ðŸŒ¿</div>
-                    <div class="stat-number">Near-Zero</div>
-                    <div class="stat-label">Carbon Footprint â€” no factories, no new raw materials</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ====== CTA ====== -->
-    <section class="cta-banner fade-in">
-        <div class="container">
-            <h2>Ready to Give Your Clothes a Second Life?</h2>
-            <p>Every garment has a story. Let us write its next chapter.</p>
-            <a href="#products" class="btn" style="background:white;color:var(--sage);">See Our Collections</a>
-        </div>
-    </section>
-
-    <!-- ====== ABOUT ====== -->
-    <section class="about-hero" id="about">
-        <img src="images/about_banner.jpg" alt="Artisan stitching in studio">
-        <h1>Our Story</h1>
-    </section>
-
-    <section class="about-origin fade-in">
-        <div class="container">
-            <h2>Where It All Began</h2>
-            <p>The Second Stitch was born from a simple question: <em>What if the clothes we throw away could become the clothes we treasure most?</em></p>
-            <div class="highlight">"We don't see raw materials. We see the shirt your grandfather wore to work every day. The jeans that carried you through school. The dress that danced at a wedding. Every fibre carries a memory, and every memory deserves to live on."</div>
-            <p>Founded in the Ignis design studio, our brand started as a bold experiment â€” taking old, discarded garments and giving them a second act. Not by patching holes or hiding flaws, but by completely reimagining them into high-end, one-of-a-kind fashion pieces.</p>
-
-            <h2 style="margin-top:60px;">Our Philosophy</h2>
-            <div class="philosophy-grid">
-                <div class="philosophy-card">
-                    <h3>âœ¨ Exclusivity by Nature</h3>
-                    <p>Every single garment is a unique, 1-of-1 masterpiece created by hand. No two pieces are ever the same. No sizes, no seasons, no mass production â€” just craft, care, and character.</p>
-                </div>
-                <div class="philosophy-card">
-                    <h3>ðŸŒ± Sustainability by Design</h3>
-                    <p>We don't buy new fabrics. We don't run factories. Our raw materials come from your wardrobes, your communities, and your memories. Near-zero carbon footprint on every piece.</p>
-                </div>
-                <div class="philosophy-card">
-                    <h3>ðŸ’š Connection by Choice</h3>
-                    <p>When you wear a Second Stitch garment, you're not just wearing fashion. You're wearing someone's story, reimagined for a new chapter.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ====== CRISIS ====== -->
-    <section class="crisis fade-in">
-        <div class="container">
-            <h2>The Ugly Truth About Fashion</h2>
-            <p>The fashion industry is one of the most destructive forces on our planet:</p>
-            <div class="crisis-stats">
-                <div class="crisis-stat">
-                    <div class="number">92 Million Tonnes</div>
-                    <p>of textile waste produced globally every year</p>
-                </div>
-                <div class="crisis-stat">
-                    <div class="number">2,700 Litres</div>
-                    <p>of water needed for just ONE cotton t-shirt â€” enough drinking water for one person for 2.5 years</p>
-                </div>
-                <div class="crisis-stat">
-                    <div class="number">10% of Global COâ‚‚</div>
-                    <p>emissions come from fashion â€” more than all international flights and shipping combined</p>
-                </div>
-                <div class="crisis-stat">
-                    <div class="number">85% of Textiles</div>
-                    <p>end up in landfills or are incinerated every single year</p>
-                </div>
-            </div>
-            <p class="closing">While fast fashion erases the planet, The Second Stitch reclaims it â€” one garment at a time.</p>
-        </div>
-    </section>
-
-    <!-- ====== PRODUCTS ====== -->
-    <section class="products-hero fade-in" id="products">
-        <div class="container">
-            <p class="section-label">Our Craft</p>
-            <h1 style="margin-bottom:10px;">1-of-1 Showcase</h1>
-            <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--sage);font-size:1.2rem;">Every Piece is a Masterpiece. Handcrafted, One-of-a-Kind, Unrepeatable.</p>
-            <div class="gallery-img">
-                <img src="images/upcycled_gallery.jpg" alt="Upcycled fashion collection">
-            </div>
-            <div class="product-grid" id="productGrid">
-                <!-- Products load here dynamically from Google Sheets -->
-                <p style="text-align:center;grid-column:1/-1;color:#999;font-style:italic;">Loading products...</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ====== CRAFT PROCESS ====== -->
-    <section class="craft-process fade-in">
-        <div class="container">
-            <h2 style="text-align:center;">The Craft Behind Every Stitch</h2>
-            <div class="process-steps">
-                <div class="process-step">
-                    <div class="step-icon">ðŸ”</div>
+                    <div class="step-number">01</div>
                     <h3>Sourcing</h3>
-                    <p>Community drop-zones & partnerships. Zero new materials.</p>
+                    <p>We curate high-quality vintage and pre-owned garments, saving premium textiles from the landfill.</p>
                 </div>
-                <div class="process-step">
-                    <div class="step-icon">âœ‚ï¸</div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
                     <h3>Deconstruction</h3>
-                    <p>Carefully taken apart. Fabric studied, strength assessed. Nothing wasted.</p>
+                    <p>Each piece is carefully unstitched by hand to preserve the integrity of the original heritage fabric.</p>
                 </div>
-                <div class="process-step">
-                    <div class="step-icon">ðŸŽ¨</div>
-                    <h3>Redesign</h3>
-                    <p>Patchwork, fabric fusion, custom embroidery & sashiko repair.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-icon">âœ¨</div>
-                    <h3>Finishing</h3>
-                    <p>Hand-finished, quality-checked. A Second Stitch tag = intention.</p>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <h3>Rebirth</h3>
+                    <p>A new, 1-of-1 sustainable masterpiece is meticulously sewn together, ready for its second life.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ====== CUSTOM SERVICE ====== -->
-    <section class="custom-service fade-in">
+    <!-- PRODUCTS -->
+    <section id="products" class="products-hero fade-in">
         <div class="container">
-            <h2>âœ‚ï¸ Your Garment, Reimagined</h2>
-            <p>Got a piece of clothing that means the world to you but sits forgotten in your wardrobe? Send it to us.</p>
-            <p class="examples">Your grandmother's saree. Your father's old work shirt. Your childhood denim jacket.</p>
-            <p>We'll transform it into a high-end, wearable masterpiece â€” preserving the memory, reinventing the style. This isn't alteration. This is resurrection.</p>
-            <a href="#contact" class="btn" style="background:white;color:var(--orange);">Request a Custom Transformation</a>
+            <p class="section-label">The Showcase</p>
+            <h2>Current Collection</h2>
+            <div id="productGrid" class="product-grid"></div>
         </div>
     </section>
 
-    <!-- ====== IMPACT PAGE ====== -->
-    <section class="comparison fade-in" id="impact" style="padding-top:120px;">
-        <div class="container">
-            <p class="section-label" style="text-align:center;">Our Impact</p>
-            <h1 style="text-align:center;margin-bottom:10px;">Fashion That Heals, Not Harms</h1>
-            <h2 style="text-align:center;margin-top:50px;">Fast Fashion vs. The Second Stitch</h2>
-            <table>
-                <thead>
-                    <tr><th>Category</th><th>âŒ Fast Fashion</th><th>âœ… The Second Stitch</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>Materials</td><td>New cotton, synthetic fibres, polyester</td><td>100% pre-owned & reclaimed fabrics</td></tr>
-                    <tr><td>Water Usage</td><td>2,700L per t-shirt</td><td>Near zero â€” fabric already exists</td></tr>
-                    <tr><td>Carbon Emissions</td><td>Massive factory & shipping footprint</td><td>Near-zero â€” local handcraft only</td></tr>
-                    <tr><td>Uniqueness</td><td>Millions of identical copies</td><td>Every piece is 1-of-1</td></tr>
-                    <tr><td>Waste</td><td>85% ends up in landfill</td><td>Zero waste philosophy</td></tr>
-                    <tr><td>Connection</td><td>Disposable, forgettable</td><td>Every garment carries a story</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- ====== STORIES ====== -->
-    <section class="stories fade-in">
-        <div class="container">
-            <h2 style="text-align:center;">Every Thread Tells a Story</h2>
-            <p style="text-align:center;max-width:600px;margin:0 auto;">Behind every Second Stitch garment is a real person, a real memory, and a real transformation.</p>
-            <div class="story-grid">
-                <div class="story-card">
-                    <p class="quote">"My grandmother's saree became my graduation jacket."</p>
-                    <p class="story-text">I couldn't bear to throw away Nani's old saree, but it had been sitting untouched for years. The Second Stitch turned it into a cropped jacket with the original embroidery preserved on the back. I wore it to my graduation. She would have loved it.</p>
-                </div>
-                <div class="story-card">
-                    <p class="quote">"Three old t-shirts became one statement piece."</p>
-                    <p class="story-text">I had band tees from school that didn't fit anymore but meant everything to me. They fused them into a patchwork hoodie. Every time I wear it, I'm wearing my teenage years.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ====== JOIN ====== -->
     <section class="cta-banner fade-in">
-        <div class="container">
-            <h2>Ignite the Change</h2>
-            <p>Fast fashion is the dead brush. We are the fire. Help us light the way.</p>
-            <div style="display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin:30px 0;">
-                <div style="text-align:center;"><span style="font-size:2rem;">ðŸ§º</span><br><strong>Donate</strong><br><span style="font-size:0.85rem;opacity:0.8;">Drop off old clothes</span></div>
-                <div style="text-align:center;"><span style="font-size:2rem;">ðŸ“¢</span><br><strong>Spread</strong><br><span style="font-size:0.85rem;opacity:0.8;">Share our story</span></div>
-                <div style="text-align:center;"><span style="font-size:2rem;">ðŸ›ï¸</span><br><strong>Shop</strong><br><span style="font-size:0.85rem;opacity:0.8;">Choose 1-of-1</span></div>
-                <div style="text-align:center;"><span style="font-size:2rem;">ðŸ¤</span><br><strong>Partner</strong><br><span style="font-size:0.85rem;opacity:0.8;">Collaborate with us</span></div>
-            </div>
-            <a href="#contact" class="btn" style="background:white;color:var(--sage);">Feed the Flame</a>
-        </div>
-    </section>
-
-    <!-- ====== CONTACT ====== -->
-    <section class="contact-section fade-in" id="contact" style="padding-top:120px;">
-        <div class="container">
-            <p class="section-label" style="text-align:center;">Get In Touch</p>
-            <h1 style="text-align:center;margin-bottom:40px;">We'd Love to Hear From You</h1>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>Reach Out</h3>
-                    <div class="contact-item">
-                        <span class="icon">ðŸ“§</span>
-                        <div><strong>Email</strong><br>lokuraadi@gmail.com</div>
-                    </div>
-                    <div class="contact-item">
-                        <span class="icon">ðŸ“</span>
-                        <div><strong>Studio</strong><br>Ignis Studio PIS Ambegaon</div>
-                    </div>
-                    <h3 style="margin-top:30px;">Clothing Drop-Off</h3>
-                    <p style="color:#666;">Want to donate old clothes? Drop them off at our community collection points or contact us to arrange a pickup. Every garment you donate is a garment saved from landfill.</p>
-                </div>
-                <div class="contact-form">
-                    <h3>Send Us a Message</h3>
-                    <form onsubmit="event.preventDefault(); alert('Thank you! We will get back to you soon. ðŸ§µâ¤ï¸');">
-                        <div class="form-group">
-                            <label>Full Name</label>
-                            <input type="text" placeholder="Your name" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Email Address</label>
-                            <input type="email" placeholder="your@email.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label>I'm Interested In</label>
-                            <select>
-                                <option>Custom Transformation</option>
-                                <option>Enquire About a Piece</option>
-                                <option>Donate Clothes</option>
-                                <option>Partnership Inquiry</option>
-                                <option>Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Tell Us Your Story</label>
-                            <textarea placeholder="Describe the garment or share your idea..."></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width:100%;border:none;">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ====== CLOSING ====== -->
-    <section class="cta-banner" style="background:linear-gradient(135deg, var(--charcoal) 0%, #222 100%);">
-        <div class="container">
-            <h2>Fashion Shouldn't Cost the Earth.</h2>
-            <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.3rem;">Back The Second Stitch â€” because we don't just remake clothes. We reimagine a better future.</p>
-            <p style="margin-top:20px;font-size:1.1rem;">Your Old Clothes, Our New Craft. ðŸ§µâ¤ï¸</p>
+        <div class="container" id="contact">
+            <h2 style="color:white;">Ignite the Change</h2>
+            <p>Fashion shouldn't cost the Earth. Support the circular economy today.</p>
+            <a href="mailto:lokuraadi@gmail.com" class="btn btn-primary" style="background:white; color:var(--charcoal);">Get Involved</a>
         </div>
     </section>
 
@@ -535,52 +197,46 @@
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
-                <h3>THE SECOND STITCH</h3>
-                <p style="font-style:italic;margin-bottom:10px;color:var(--orange);">From the ashes, we forge the future.</p>
+                <h3 style="color:white;">THE SECOND STITCH</h3>
+                <p style="font-style:italic;margin-bottom:10px;">The Art of Rebirth.</p>
                 <p>A sustainable fashion initiative by House Ignis. Every garment is a 1-of-1 masterpiece handcrafted from pre-owned fabrics.</p>
             </div>
             <div class="footer-links">
-                <h4>Navigate</h4>
-                <a href="#home">Home</a>
-                <a href="#about">About Us</a>
-                <a href="#products">Products</a>
-                <a href="#impact">Our Impact</a>
+                <h4 style="color:var(--warm-light);">Navigate</h4>
+                <a href="#home">Home</a><br>
+                <a href="#products">Products</a><br>
                 <a href="#contact">Contact</a>
             </div>
             <div class="footer-links">
-                <h4>Connect</h4>
-                <a href="#">Email Us</a>
-                <a href="#">Donate Clothes</a>
+                <h4 style="color:var(--warm-light);">Connect</h4>
+                <a href="mailto:lokuraadi@gmail.com">Email Us</a><br>
+                <a href="mailto:lokuraadi@gmail.com">Donate Clothes</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>Â© 2026 The Second Stitch â€” House Ignis. Made with <span class="heart">â™¥</span> and reclaimed fabric.</p>
+            <p>© 2026 The Second Stitch — House Ignis. Forged with <span class="heart">♥</span> and reclaimed fabric.</p>
         </div>
     </footer>
 
     <script>
-        // ============================================
-        // ðŸ”— GOOGLE SHEETS CONFIG â€” PASTE YOUR URL HERE
-        // ============================================
+        // SLIDER LOGIC
+        const slider = document.getElementById('sliderRange');
+        const beforeImg = document.getElementById('beforeImage');
+        const sliderBtn = document.getElementById('sliderBtn');
+
+        slider.addEventListener('input', (e) => {
+            const val = e.target.value;
+            beforeImg.style.width = val + '%';
+            sliderBtn.style.left = val + '%';
+        });
+
+        // GOOGLE SHEETS LOGIC
         const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRuYfI3y30BVALytLyMAxjCvoc821ybIWqLtkGnKXTOuYrz_uEfaAI3mcBUUmqNEYsMATCElu-1iTKh/pub?gid=1121643241&single=true&output=csv';
 
-        // Fallback products (shown when no Google Sheet is connected)
         const fallbackProducts = [
-            { Name: 'The Patchwork Denim Jacket', Description: 'Reconstructed from 3 different vintage denim pieces. Hand-embroidered wildflower detailing on the front panel. Raw-edge finish.', Price: 'â‚¹850', Category: 'Jacket', Status: 'Available', Image: '' },
-            { Name: 'The Hybrid Shirt', Description: 'Half vintage striped cotton, half olive canvas. Two worlds collide in one conversation-starting garment.', Price: 'â‚¹600', Category: 'Shirt', Status: 'Available', Image: '' },
-            { Name: 'The Sashiko Jeans', Description: 'Artistically repaired with traditional Japanese sashiko stitching. Every visible repair tells a story of resilience.', Price: 'â‚¹750', Category: 'Jeans', Status: 'Sold', Image: '' },
-            { Name: 'The Scrap Tote', Description: 'Patchwork mosaic of floral prints, denim panels, and canvas â€” functional art.', Price: 'â‚¹400', Category: 'Accessory', Status: 'Available', Image: '' }
+            { Name: 'The Patchwork Denim Jacket', Description: 'Reconstructed from 3 different vintage denim pieces.', Price: '₹850', Category: 'Jacket', Status: 'Available', Image: '' },
+            { Name: 'The Sashiko Jeans', Description: 'Artistically repaired with traditional Japanese sashiko stitching.', Price: '₹750', Category: 'Jeans', Status: 'Sold', Image: '' }
         ];
-
-        const categoryEmojis = {
-            'jacket': 'ðŸ§¥', 'shirt': 'ðŸ‘”', 'jeans': 'ðŸ‘–', 'pants': 'ðŸ‘–',
-            'accessory': 'ðŸ‘œ', 'bag': 'ðŸ‘œ', 'tote': 'ðŸ‘œ', 'dress': 'ðŸ‘—',
-            'skirt': 'ðŸ‘—', 'hoodie': 'ðŸ§¥', 'sweater': 'ðŸ§¥', 'default': 'âœ¨'
-        };
-
-        function getEmoji(category) {
-            return categoryEmojis[(category || '').toLowerCase()] || categoryEmojis['default'];
-        }
 
         function renderProducts(products) {
             const grid = document.getElementById('productGrid');
@@ -590,38 +246,30 @@
             }
             grid.innerHTML = products.map(p => {
                 const isSold = (p.Status || '').toLowerCase() === 'sold';
-                const emoji = getEmoji(p.Category);
-                const imgHtml = p.Image
-                    ? `<div style="width:100%;height:180px;border-radius:12px;overflow:hidden;margin-bottom:15px;"><img src="${p.Image}" alt="${p.Name}" style="width:100%;height:100%;object-fit:cover;"></div>`
-                    : '';
-                return `
-                    <div class="product-card" style="${isSold ? 'opacity:0.7;' : ''}">
+                const imgHtml = p.Image ? `<div style="width:100%;height:180px;border-radius:12px;overflow:hidden;margin-bottom:15px;"><img src="`+p.Image+`" style="width:100%;height:100%;object-fit:cover;"></div>` : '';
+                return `<div class="product-card" style="${isSold ? 'opacity:0.7;' : ''}">
                         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
                             <span class="tag" style="${isSold ? 'background:#999;' : ''}">${isSold ? 'Sold' : 'Available'}</span>
                             ${p.Price ? `<span style="font-family:'Playfair Display',serif;font-weight:700;color:${isSold ? '#999' : 'var(--orange)'};font-size:1.1rem;">${p.Price}</span>` : ''}
                         </div>
                         ${imgHtml}
-                        <h3>${emoji} ${p.Name}</h3>
+                        <h3>${p.Name}</h3>
                         <p>${p.Description}</p>
-                        ${p.Category ? `<span style="font-size:0.75rem;color:var(--sage);text-transform:uppercase;letter-spacing:1px;">${p.Category}</span>` : ''}
-                    </div>
-                `;
+                    </div>`;
             }).join('');
         }
 
-        // Parse CSV text into array of objects
         function parseCSV(csv) {
             const lines = csv.trim().split('\n');
             if (lines.length < 2) return [];
             const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
             return lines.slice(1).map(line => {
-                const values = [];
-                let current = '', inQuotes = false;
+                const values = []; let current = '', inQuotes = false;
                 for (let i = 0; i < line.length; i++) {
                     const char = line[i];
-                    if (char === '"') { inQuotes = !inQuotes; }
+                    if (char === '"') inQuotes = !inQuotes;
                     else if (char === ',' && !inQuotes) { values.push(current.trim()); current = ''; }
-                    else { current += char; }
+                    else current += char;
                 }
                 values.push(current.trim());
                 const obj = {};
@@ -630,50 +278,23 @@
             }).filter(p => p.Name && p.Name.trim() !== '');
         }
 
-        // Load products from Google Sheets or fallback
         async function loadProducts() {
-            if (!SHEET_CSV_URL) {
-                renderProducts(fallbackProducts);
-                return;
-            }
             try {
-                // Add a timestamp to bypass browser caching
                 const response = await fetch(SHEET_CSV_URL + '&t=' + new Date().getTime());
                 const csv = await response.text();
                 const products = parseCSV(csv);
                 renderProducts(products.length > 0 ? products : fallbackProducts);
             } catch (err) {
-                console.error('Failed to load from Google Sheets:', err);
                 renderProducts(fallbackProducts);
             }
         }
-
-        // Load products on page load
         loadProducts();
 
-        // NAVIGATION & ANIMATIONS
-        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
         window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            nav.classList.toggle('scrolled', window.scrollY > 50);
-            let current = '';
-            document.querySelectorAll('section[id]').forEach(s => { if (scrollY >= s.offsetTop - 200) current = s.id; });
-            document.querySelectorAll('.nav-links a').forEach(a => { a.classList.toggle('active', a.getAttribute('href') === '#' + current); });
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
         });
         const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', function(e) {
-                e.preventDefault();
-                const t = document.querySelector(this.getAttribute('href'));
-                if (t) { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); document.getElementById('navLinks').classList.remove('active'); }
-            });
-        });
     </script>
 </body>
 </html>
-
-
-
-
-
