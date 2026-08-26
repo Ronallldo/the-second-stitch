@@ -63,14 +63,18 @@
         .step-card:hover { transform: translateY(-5px); }
         .step-number { width: 50px; height: 50px; background: var(--orange-dark); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin: 0 auto 20px; }
         
-        /* COMPARISON SLIDER */
+        /* CORRECTED COMPARISON SLIDER */
         .comparison-section { background: var(--white); text-align: center; }
         .slider-wrapper { position: relative; width: 100%; max-width: 800px; margin: 40px auto; aspect-ratio: 1/1; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-        .slider-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        .slider-image img { width: 100%; height: 100%; object-fit: cover; }
-        .before-image { width: 50%; overflow: hidden; z-index: 2; border-right: 3px solid white; }
-        .slider-range { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; z-index: 10; cursor: ew-resize; }
-        .slider-button { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--charcoal); z-index: 5; pointer-events: none; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .slider-img-after, .slider-img-before { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        
+        /* This clip-path hides the right side of the Before image perfectly */
+        .slider-img-before { z-index: 2; clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%); }
+        
+        .slider-line { position: absolute; top: 0; left: 50%; width: 4px; height: 100%; background: white; z-index: 3; pointer-events: none; box-shadow: 0 0 10px rgba(0,0,0,0.3); }
+        .slider-button { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--charcoal); z-index: 4; pointer-events: none; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .slider-range { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; z-index: 5; cursor: ew-resize; }
+        
         .slider-label { position: absolute; top: 20px; padding: 5px 15px; background: rgba(0,0,0,0.6); color: white; border-radius: 20px; font-size: 0.8rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; z-index: 3; }
         .slider-label.left { left: 20px; }
         .slider-label.right { right: 20px; }
@@ -137,16 +141,13 @@
             <p>Drag the slider to see how we take discarded materials and elevate them into high-fashion art.</p>
             
             <div class="slider-wrapper">
-                <div class="slider-image">
-                    <img src="images/after_jacket.jpg" alt="After Upcycling">
-                </div>
-                <div class="slider-image before-image" id="beforeImage">
-                    <img src="images/before_jacket.jpg" alt="Before Upcycling">
-                </div>
+                <img src="images/after_jacket.jpg" class="slider-img-after" alt="After Upcycling">
+                <img src="images/before_jacket.jpg" class="slider-img-before" id="sliderImgBefore" alt="Before Upcycling">
                 <div class="slider-label left">The Ashes</div>
                 <div class="slider-label right">The Phoenix</div>
-                <input type="range" min="0" max="100" value="50" class="slider-range" id="sliderRange">
+                <div class="slider-line" id="sliderLine"></div>
                 <div class="slider-button" id="sliderBtn">↔</div>
+                <input type="range" min="0" max="100" value="50" class="slider-range" id="sliderRange">
             </div>
         </div>
     </section>
@@ -221,12 +222,14 @@
     <script>
         // SLIDER LOGIC
         const slider = document.getElementById('sliderRange');
-        const beforeImg = document.getElementById('beforeImage');
+        const beforeImg = document.getElementById('sliderImgBefore');
+        const sliderLine = document.getElementById('sliderLine');
         const sliderBtn = document.getElementById('sliderBtn');
 
         slider.addEventListener('input', (e) => {
             const val = e.target.value;
-            beforeImg.style.width = val + '%';
+            beforeImg.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
+            sliderLine.style.left = val + '%';
             sliderBtn.style.left = val + '%';
         });
 
