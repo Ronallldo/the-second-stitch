@@ -15,6 +15,7 @@
             --orange-dark: #D94600;
             --orange-glow: rgba(255, 90, 0, 0.25);
             --gold: #E5A93C;
+            --green: #2EC4B6;
             --warm-light: #DDD5CA;
             --muted: #8E887F;
             --white: #ffffff;
@@ -76,7 +77,7 @@
         /* BRAND AMBASSADOR SPOTLIGHT (ABIDOO) */
         .ambassador-section { background: radial-gradient(circle at 80% 50%, rgba(255,90,0,0.12) 0%, transparent 60%), #11100F; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
         .ambassador-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 60px; align-items: center; }
-        .ambassador-img-wrap { position: relative; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.8); border: 1px solid var(--border-orange); }
+        .ambassador-img-wrap { position: relative; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.8); border: 1px solid var(--border-orange); background: #000; }
         .ambassador-img-wrap img { width: 100%; display: block; object-fit: cover; transition: transform 0.5s ease; }
         .ambassador-img-wrap:hover img { transform: scale(1.03); }
         .ambassador-badge { position: absolute; top: 20px; left: 20px; background: rgba(12,11,10,0.85); backdrop-filter: blur(10px); border: 1px solid var(--border-orange); color: var(--gold); padding: 8px 16px; border-radius: 30px; font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
@@ -110,7 +111,7 @@
         .step-tech-tag { font-size: 0.75rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; display: block; }
         .step-number { width: 46px; height: 46px; background: rgba(255,90,0,0.15); border: 1px solid var(--border-orange); color: var(--orange); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 20px; }
 
-        /* PRODUCTS COLLECTION: CLEAN NAME-FIRST INTERACTIVE CATALOG */
+        /* PRODUCTS COLLECTION: DYNAMIC NAME LIST */
         .products-hero { background: var(--bg); text-align: center; }
         .discount-banner { background: linear-gradient(135deg, rgba(255,90,0,0.2) 0%, rgba(229,169,60,0.15) 100%); border: 1px solid var(--orange); border-radius: 16px; padding: 20px 30px; max-width: 860px; margin: 0 auto 40px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
         .discount-banner .text { text-align: left; }
@@ -119,47 +120,55 @@
         .discount-tag { background: var(--orange); color: white; font-size: 0.85rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 15px var(--orange-glow); }
 
         .catalog-list { display: flex; flex-direction: column; gap: 18px; max-width: 960px; margin: 0 auto; }
-        .catalog-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 26px 32px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: inherit; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+        .catalog-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 24px 30px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: inherit; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
         .catalog-item::before { content: ''; position: absolute; left: 0; top: 0; width: 4px; height: 100%; background: var(--orange); opacity: 0; transition: opacity 0.3s; }
         .catalog-item:hover, .catalog-item.active { background: var(--bg-card-hover); border-color: var(--border-orange); transform: translateX(8px); box-shadow: 0 10px 35px rgba(0,0,0,0.6); }
         .catalog-item:hover::before, .catalog-item.active::before { opacity: 1; }
         
         .catalog-left { text-align: left; }
-        .catalog-category { font-size: 0.75rem; font-weight: 700; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; display: block; }
-        .catalog-name { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--white); margin: 0 0 8px; transition: color 0.3s; }
+        .catalog-category { font-size: 0.75rem; font-weight: 700; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; display: block; }
+        .catalog-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--white); margin: 0 0 6px; transition: color 0.3s; }
         .catalog-item:hover .catalog-name { color: var(--orange); }
+        .catalog-badges { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
         .catalog-badge { display: inline-block; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--warm-light); font-size: 0.7rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; border-radius: 6px; }
         
+        /* AVAILABILITY STATUS PILLS */
+        .status-pill { font-size: 0.7rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; }
+        .status-available { background: rgba(46, 196, 182, 0.15); border: 1px solid var(--green); color: var(--green); }
+        .status-low { background: rgba(229, 169, 60, 0.18); border: 1px solid var(--gold); color: var(--gold); }
+        .status-sold { background: rgba(255, 255, 255, 0.08); border: 1px solid #555; color: #888; }
+
         .catalog-right { text-align: right; display: flex; align-items: center; gap: 25px; }
         .catalog-prices { text-align: right; }
         .catalog-price-old { font-size: 0.85rem; color: var(--muted); text-decoration: line-through; display: block; }
         .catalog-price-new { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--orange); }
-        .catalog-arrow-btn { width: 48px; height: 48px; background: rgba(255,90,0,0.1); border: 1px solid var(--border-orange); border-radius: 50%; color: var(--orange); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: all 0.3s; flex-shrink: 0; }
+        .catalog-arrow-btn { width: 46px; height: 46px; background: rgba(255,90,0,0.1); border: 1px solid var(--border-orange); border-radius: 50%; color: var(--orange); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: all 0.3s; flex-shrink: 0; }
         .catalog-item:hover .catalog-arrow-btn, .catalog-item.active .catalog-arrow-btn { background: var(--orange); color: white; transform: translateX(4px); box-shadow: 0 0 20px var(--orange-glow); }
 
         /* IN-PAGE DEDICATED PRODUCT DOSSIER SHOWCASE */
-        #product-showcase { display: none; margin-top: 50px; scroll-margin-top: 100px; }
-        #product-showcase.active { display: block; animation: fadeInSlide 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        @keyframes fadeInSlide { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        #product-showcase { display: none; margin-top: 45px; scroll-margin-top: 100px; }
+        #product-showcase.active { display: block; animation: fadeInSlide 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes fadeInSlide { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
 
         .showcase-card { background: var(--bg-card); border: 1px solid var(--border-orange); border-radius: 24px; max-width: 1000px; margin: 0 auto; box-shadow: 0 25px 80px rgba(0,0,0,0.9); overflow: hidden; text-align: left; }
-        .showcase-header-bar { background: rgba(0,0,0,0.4); border-bottom: 1px solid var(--border); padding: 18px 30px; display: flex; justify-content: space-between; align-items: center; }
+        .showcase-header-bar { background: rgba(0,0,0,0.4); border-bottom: 1px solid var(--border); padding: 16px 28px; display: flex; justify-content: space-between; align-items: center; }
         .showcase-close-btn { color: var(--warm-light); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: color 0.3s; }
         .showcase-close-btn:hover { color: var(--orange); }
 
-        .showcase-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 40px; padding: 40px; align-items: center; }
+        .showcase-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 40px; padding: 38px; align-items: center; }
         .showcase-img-box { border-radius: 20px; overflow: hidden; border: 1px solid var(--border-orange); box-shadow: 0 15px 40px rgba(0,0,0,0.7); max-height: 520px; background: #000; }
         .showcase-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
         
-        .showcase-info .tag { display: inline-block; background: rgba(255,90,0,0.15); border: 1px solid var(--border-orange); color: var(--gold); font-size: 0.75rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 5px 15px; border-radius: 20px; margin-bottom: 12px; }
+        .showcase-info .top-tags { display: flex; gap: 10px; align-items: center; margin-bottom: 12px; flex-wrap: wrap; }
+        .showcase-info .tag { display: inline-block; background: rgba(255,90,0,0.15); border: 1px solid var(--border-orange); color: var(--gold); font-size: 0.75rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 4px 14px; border-radius: 20px; }
         .showcase-info h2 { font-size: 2.2rem; margin-bottom: 15px; color: white; line-height: 1.2; }
-        .showcase-pricing { display: flex; align-items: baseline; gap: 15px; margin-bottom: 20px; background: rgba(255,255,255,0.03); padding: 15px 20px; border-radius: 14px; border: 1px solid var(--border); }
+        .showcase-pricing { display: flex; align-items: baseline; gap: 15px; margin-bottom: 20px; background: rgba(255,255,255,0.03); padding: 14px 18px; border-radius: 14px; border: 1px solid var(--border); }
         .showcase-price-old { font-size: 1.1rem; text-decoration: line-through; color: var(--muted); }
         .showcase-price-new { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--orange); }
         .showcase-discount-pill { background: var(--orange-dark); color: white; font-size: 0.75rem; font-weight: 800; padding: 4px 12px; border-radius: 20px; letter-spacing: 1px; }
 
         .showcase-desc { font-size: 1.05rem; line-height: 1.7; color: var(--warm-light); margin-bottom: 25px; }
-        .showcase-specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 30px; }
+        .showcase-specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
         .showcase-spec-item { background: rgba(0,0,0,0.35); border: 1px solid var(--border); padding: 12px 16px; border-radius: 12px; font-size: 0.85rem; }
         .showcase-spec-item strong { display: block; color: var(--orange); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
 
@@ -198,8 +207,8 @@
             h1 { font-size: 2.6rem; }
             h2 { font-size: 1.9rem; }
             .ambassador-grid, .contact-grid, .steps-grid, .metric-grid, .economics-grid, .showcase-grid { grid-template-columns: 1fr; }
-            .catalog-item { flex-direction: column; align-items: flex-start; gap: 15px; padding: 22px; }
-            .catalog-right { width: 100%; justify-content: space-between; margin-top: 10px; }
+            .catalog-item { flex-direction: column; align-items: flex-start; gap: 15px; padding: 20px; }
+            .catalog-right { width: 100%; justify-content: space-between; margin-top: 8px; }
             .metric-item { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
             .nav-links { display: none; }
             .showcase-grid { padding: 25px; gap: 25px; }
@@ -270,7 +279,7 @@
         <div class="container">
             <div class="ambassador-grid">
                 <div class="ambassador-img-wrap">
-                    <img src="images/abidoo_ambassador.jpg" alt="Abidoo wearing IGNIS-01 Composite Armor Jacket">
+                    <img src="images/abidoo_mascot.jpg" alt="Abidoo wearing IGNIS-01 Composite Armor Jacket">
                     <div class="ambassador-badge">PODAR GLOBAL ICON & BRAND AMBASSADOR</div>
                 </div>
                 <div class="ambassador-content">
@@ -353,7 +362,7 @@
         </div>
     </section>
 
-    <!-- PRODUCTS COLLECTION (NAME-ONLY LIST - CLICK TO OPEN IN-PAGE PRODUCT DOSSIER) -->
+    <!-- PRODUCTS COLLECTION (DYNAMIC NAME-ONLY LIST + IN-PAGE SHOWCASE) -->
     <section id="products" class="products-hero fade-in">
         <div class="container">
             <p class="section-label">House Ignis 1-of-1 Artifacts</p>
@@ -368,74 +377,8 @@
                 <div class="discount-tag">UP TO 52% OFF</div>
             </div>
 
-            <!-- NAME-ONLY CLEAN CATALOG LIST -->
-            <div class="catalog-list">
-                
-                <!-- PRODUCT 1 -->
-                <div class="catalog-item" id="item-jacket" onclick="selectProduct('jacket')">
-                    <div class="catalog-left">
-                        <span class="catalog-category">01 • Outerwear</span>
-                        <h3 class="catalog-name">IGNIS-01 Composite Armor Jacket</h3>
-                        <span class="catalog-badge">Flagship Piece • 1-of-1</span>
-                    </div>
-                    <div class="catalog-right">
-                        <div class="catalog-prices">
-                            <span class="catalog-price-old">₹2,499</span>
-                            <span class="catalog-price-new">₹1,199</span>
-                        </div>
-                        <div class="catalog-arrow-btn">→</div>
-                    </div>
-                </div>
-
-                <!-- PRODUCT 2 -->
-                <div class="catalog-item" id="item-tote" onclick="selectProduct('tote')">
-                    <div class="catalog-left">
-                        <span class="catalog-category">02 • Everyday Accessories</span>
-                        <h3 class="catalog-name">Aegis Geometric Tote / Armor Bag</h3>
-                        <span class="catalog-badge">Student Favorite • Scrap Denim</span>
-                    </div>
-                    <div class="catalog-right">
-                        <div class="catalog-prices">
-                            <span class="catalog-price-old">₹999</span>
-                            <span class="catalog-price-new">₹499</span>
-                        </div>
-                        <div class="catalog-arrow-btn">→</div>
-                    </div>
-                </div>
-
-                <!-- PRODUCT 3 -->
-                <div class="catalog-item" id="item-vest" onclick="selectProduct('vest')">
-                    <div class="catalog-left">
-                        <span class="catalog-category">03 • Streetwear</span>
-                        <h3 class="catalog-name">Ignis Thermal-Fused Sleeveless Vest</h3>
-                        <span class="catalog-badge">New Drop • High Heat Compression</span>
-                    </div>
-                    <div class="catalog-right">
-                        <div class="catalog-prices">
-                            <span class="catalog-price-old">₹1,499</span>
-                            <span class="catalog-price-new">₹799</span>
-                        </div>
-                        <div class="catalog-arrow-btn">→</div>
-                    </div>
-                </div>
-
-                <!-- PRODUCT 4 -->
-                <div class="catalog-item" id="item-hat" onclick="selectProduct('hat')">
-                    <div class="catalog-left">
-                        <span class="catalog-category">04 • Headwear</span>
-                        <h3 class="catalog-name">Facet-01 Upcycled Denim Bucket Hat</h3>
-                        <span class="catalog-badge">Peer Access Price • Rigid Brim</span>
-                    </div>
-                    <div class="catalog-right">
-                        <div class="catalog-prices">
-                            <span class="catalog-price-old">₹599</span>
-                            <span class="catalog-price-new">₹299</span>
-                        </div>
-                        <div class="catalog-arrow-btn">→</div>
-                    </div>
-                </div>
-
-            </div>
+            <!-- NAME-ONLY CLEAN CATALOG LIST (DYNAMICALLY POPULATED) -->
+            <div class="catalog-list" id="catalogList"></div>
 
             <!-- IN-PAGE DEDICATED PRODUCT SHOWCASE CONTAINER -->
             <div id="product-showcase">
@@ -449,7 +392,10 @@
                             <img id="showcaseImg" src="" alt="Product Showcase">
                         </div>
                         <div class="showcase-info">
-                            <div id="showcaseTag" class="tag">HOUSE IGNIS 1-OF-1 ARTIFACT</div>
+                            <div class="top-tags">
+                                <div id="showcaseTag" class="tag">HOUSE IGNIS 1-OF-1 ARTIFACT</div>
+                                <div id="showcaseStatusPill" class="status-pill status-available">Available</div>
+                            </div>
                             <h2 id="showcaseTitle">Product Title</h2>
                             
                             <div class="showcase-pricing">
@@ -465,8 +411,8 @@
 
                             <div class="showcase-specs-grid">
                                 <div class="showcase-spec-item">
-                                    <strong>Manufacturing Cost</strong>
-                                    <span id="showcaseCost">₹180 (Zero Scrap Cost)</span>
+                                    <strong>Availability Status</strong>
+                                    <span id="showcaseStock">1 of 1 Available</span>
                                 </div>
                                 <div class="showcase-spec-item">
                                     <strong>Gross Profit Margin</strong>
@@ -616,82 +562,163 @@
         
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // IN-PAGE DEDICATED PRODUCT DOSSIER DATA & SELECTION LOGIC
-        const products = {
-            jacket: {
-                title: "IGNIS-01 Composite Armor Jacket",
-                tag: "FLAGSHIP 1-OF-1 • OUTERWEAR",
-                image: "images/after_jacket.jpg",
-                priceNew: "₹1,199",
-                priceOld: "₹2,499",
+        // GOOGLE SHEETS LIVE INVENTORY URL (AUTO SYNC WITHOUT GITHUB RE-UPLOADS)
+        const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRuYfI3y30BVALytLyMAxjCvoc821ybIWqLtkGnKXTOuYrz_uEfaAI3mcBUUmqNEYsMATCElu-1iTKh/pub?gid=1121643241&single=true&output=csv';
+
+        // DEFAULT FALLBACK PRODUCTS (USED IF OFFLINE OR SHEET IS EMPTY)
+        let productsData = [
+            {
+                id: "jacket",
+                name: "IGNIS-01 Composite Armor Jacket",
+                category: "01 • Outerwear",
+                badge: "Flagship Piece • 1-of-1",
+                status: "Available",
+                stock: "1 of 1 Available",
+                price: "₹1,199",
+                originalPrice: "₹2,499",
                 discount: "52% OFF",
-                desc: "Dual-textured structural jacket constructed with zero-sew thermal-fused denim facets on the right side and deep raw indigo denim on the left. Engineered for high mobility, wind resistance, and zero synthetic waste.",
+                image: "images/after_jacket.jpg",
+                description: "Dual-textured structural jacket constructed with zero-sew thermal-fused denim facets on the right side and deep raw indigo denim on the left. Engineered for high mobility, wind resistance, and zero synthetic waste.",
                 cost: "₹180 (Zero Scrap Cost)",
                 margin: "85% Gross Margin",
                 provenance: "Reclaimed Vintage Levi's Denim",
                 synthesis: "High-Heat Pressure Matrix"
             },
-            tote: {
-                title: "Aegis Geometric Tote / Armor Bag",
-                tag: "STUDENT DAILY • ACCESSORIES",
-                image: "images/aegis_tote.jpg",
-                priceNew: "₹499",
-                priceOld: "₹999",
+            {
+                id: "tote",
+                name: "Aegis Geometric Tote / Armor Bag",
+                category: "02 • Everyday Accessories",
+                badge: "Student Favorite • Scrap Denim",
+                status: "Low Stock",
+                stock: "Only 2 Left in Studio",
+                price: "₹499",
+                originalPrice: "₹999",
                 discount: "50% OFF",
-                desc: "Heavy-duty everyday tote bag constructed from heat-bonded denim triangle scrap panels. Features reinforced ember-orange edge trims, heavy-gauge zipper, and reinforced shoulder straps.",
+                image: "images/aegis_tote.jpg",
+                description: "Heavy-duty everyday tote bag constructed from heat-bonded denim triangle scrap panels. Features reinforced ember-orange edge trims, heavy-gauge zipper, and reinforced shoulder straps.",
                 cost: "₹60 (Scrap Material)",
                 margin: "88% Gross Margin",
                 provenance: "Post-Consumer Denim Offcuts",
                 synthesis: "Geometric Panel Bonding"
             },
-            vest: {
-                title: "Ignis Thermal-Fused Sleeveless Vest",
-                tag: "NEW STREETWEAR DROP",
-                image: "images/ignis_vest.jpg",
-                priceNew: "₹799",
-                priceOld: "₹1,499",
+            {
+                id: "vest",
+                name: "Ignis Thermal-Fused Sleeveless Vest",
+                category: "03 • Streetwear",
+                badge: "New Drop • High Heat Compression",
+                status: "Available",
+                stock: "Made to Order",
+                price: "₹799",
+                originalPrice: "₹1,499",
                 discount: "47% OFF",
-                desc: "Lightweight cropped utility vest made from 100% heat-compressed denim offcuts with ergonomic dual front utility pockets and breathable bonded mesh lining.",
+                image: "images/ignis_vest.jpg",
+                description: "Lightweight cropped utility vest made from 100% heat-compressed denim offcuts with ergonomic dual front utility pockets and breathable bonded mesh lining.",
                 cost: "₹110 (Recycled Inputs)",
                 margin: "86% Gross Margin",
                 provenance: "100% Reclaimed Denim Offcuts",
                 synthesis: "Multi-Density Compression"
             },
-            hat: {
-                title: "Facet-01 Upcycled Denim Bucket Hat",
-                tag: "IMPULSE BUY • HEADWEAR",
-                image: "images/facet_hat.jpg",
-                priceNew: "₹299",
-                priceOld: "₹599",
+            {
+                id: "hat",
+                name: "Facet-01 Upcycled Denim Bucket Hat",
+                category: "04 • Headwear",
+                badge: "Peer Access Price • Rigid Brim",
+                status: "Sold Out",
+                stock: "0 Available (Batch Sold)",
+                price: "₹299",
+                originalPrice: "₹599",
                 discount: "50% OFF",
-                desc: "Structured street bucket hat featuring rigid, heat-bonded geometric denim brim panels with precision embroidered Ignis logo. Designed at an accessible peer-student price point.",
+                image: "images/facet_hat.jpg",
+                description: "Structured street bucket hat featuring rigid, heat-bonded geometric denim brim panels with precision embroidered Ignis logo. Designed at an accessible peer-student price point.",
                 cost: "₹40 (Scrap Offcuts)",
                 margin: "87% Gross Margin",
                 provenance: "Tailor Waste Cutaways",
                 synthesis: "Form-Holding Heat Fusion"
             }
-        };
+        ];
+
+        function getStatusPill(status, stock) {
+            const s = (status || '').toLowerCase();
+            if (s.includes('low') || s.includes('1 left') || s.includes('2 left') || s.includes('limited')) {
+                return `<span class="status-pill status-low">🔥 ${stock || 'Low Stock'}</span>`;
+            } else if (s.includes('sold')) {
+                return `<span class="status-pill status-sold">✕ ${stock || 'Sold Out'}</span>`;
+            } else {
+                return `<span class="status-pill status-available">✓ ${stock || 'Available'}</span>`;
+            }
+        }
+
+        function renderCatalogList() {
+            const listEl = document.getElementById('catalogList');
+            if (!listEl) return;
+            
+            listEl.innerHTML = productsData.map((p, idx) => {
+                const pid = p.id || ('prod-' + idx);
+                const statusPill = getStatusPill(p.status, p.stock);
+                return `
+                <div class="catalog-item" id="item-${pid}" onclick="selectProduct('${pid}')">
+                    <div class="catalog-left">
+                        <span class="catalog-category">${p.category || 'House Ignis 1-of-1'}</span>
+                        <h3 class="catalog-name">${p.name}</h3>
+                        <div class="catalog-badges">
+                            <span class="catalog-badge">${p.badge || 'Handcrafted'}</span>
+                            ${statusPill}
+                        </div>
+                    </div>
+                    <div class="catalog-right">
+                        <div class="catalog-prices">
+                            <span class="catalog-price-old">${p.originalPrice || ''}</span>
+                            <span class="catalog-price-new">${p.price}</span>
+                        </div>
+                        <div class="catalog-arrow-btn">→</div>
+                    </div>
+                </div>`;
+            }).join('');
+        }
 
         function selectProduct(id) {
-            const p = products[id];
+            const p = productsData.find((item, idx) => (item.id === id || ('prod-' + idx) === id));
             if (!p) return;
 
             document.querySelectorAll('.catalog-item').forEach(el => el.classList.remove('active'));
             const activeItem = document.getElementById('item-' + id);
             if (activeItem) activeItem.classList.add('active');
 
-            document.getElementById('showcaseImg').src = p.image;
-            document.getElementById('showcaseTitle').textContent = p.title;
-            document.getElementById('showcaseTag').textContent = p.tag;
-            document.getElementById('showcasePriceNew').textContent = p.priceNew;
-            document.getElementById('showcasePriceOld').textContent = p.priceOld;
-            document.getElementById('showcaseDiscount').textContent = p.discount;
-            document.getElementById('showcaseDesc').textContent = p.desc;
-            document.getElementById('showcaseCost').textContent = p.cost;
-            document.getElementById('showcaseMargin').textContent = p.margin;
-            document.getElementById('showcaseProvenance').textContent = p.provenance;
-            document.getElementById('showcaseSynthesis').textContent = p.synthesis;
-            document.getElementById('showcaseOrderBtn').href = `mailto:lokuraadi@gmail.com?subject=Order Request for ${encodeURIComponent(p.title)}&body=Hello House Ignis, I would like to order the ${encodeURIComponent(p.title)} (${p.priceNew}).`;
+            document.getElementById('showcaseImg').src = p.image || 'images/after_jacket.jpg';
+            document.getElementById('showcaseTitle').textContent = p.name;
+            document.getElementById('showcaseTag').textContent = p.badge || p.category || 'HOUSE IGNIS 1-OF-1';
+            document.getElementById('showcasePriceNew').textContent = p.price;
+            document.getElementById('showcasePriceOld').textContent = p.originalPrice || '';
+            document.getElementById('showcaseDiscount').textContent = p.discount || 'HOUSE DISCOUNT';
+            document.getElementById('showcaseDesc').textContent = p.description;
+            document.getElementById('showcaseStock').textContent = p.stock || p.status || 'Available';
+            document.getElementById('showcaseMargin').textContent = p.margin || '85% Gross Margin';
+            document.getElementById('showcaseProvenance').textContent = p.provenance || '100% Reclaimed Vintage Denim';
+            document.getElementById('showcaseSynthesis').textContent = p.synthesis || 'High-Heat Pressure Matrix';
+            
+            // Status Pill in Showcase
+            const pillEl = document.getElementById('showcaseStatusPill');
+            const s = (p.status || '').toLowerCase();
+            if (s.includes('low')) {
+                pillEl.className = 'status-pill status-low';
+                pillEl.textContent = `🔥 ${p.stock || 'Low Stock'}`;
+            } else if (s.includes('sold')) {
+                pillEl.className = 'status-pill status-sold';
+                pillEl.textContent = `✕ ${p.stock || 'Sold Out'}`;
+            } else {
+                pillEl.className = 'status-pill status-available';
+                pillEl.textContent = `✓ ${p.stock || 'Available'}`;
+            }
+
+            const isSold = s.includes('sold');
+            const orderBtn = document.getElementById('showcaseOrderBtn');
+            if (isSold) {
+                orderBtn.textContent = "⚡ Request Custom Made-to-Order Recreation";
+                orderBtn.href = `mailto:lokuraadi@gmail.com?subject=Custom Request for Sold Out Piece: ${encodeURIComponent(p.name)}&body=Hello House Ignis, I saw the ${encodeURIComponent(p.name)} is sold out. Can I request a custom recreation?`;
+            } else {
+                orderBtn.textContent = "⚡ Acquire 1-of-1 Piece via Forge";
+                orderBtn.href = `mailto:lokuraadi@gmail.com?subject=Order Request for ${encodeURIComponent(p.name)}&body=Hello House Ignis, I would like to order the ${encodeURIComponent(p.name)} (${p.price}).`;
+            }
 
             const showcase = document.getElementById('product-showcase');
             showcase.classList.add('active');
@@ -706,6 +733,98 @@
             document.querySelectorAll('.catalog-item').forEach(el => el.classList.remove('active'));
             document.getElementById('products').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+
+        // SMART RESILIENT CSV PARSER (HANDLES BOTH REGULAR & QUOTED MULTI-COLUMN CSVs)
+        function parseCSV(csv) {
+            let lines = csv.trim().split('\n');
+            if (lines.length < 2) return [];
+
+            // Un-escape outer quotes if whole line was stored in Column A
+            lines = lines.map(l => {
+                l = l.trim();
+                if (l.startsWith('"') && l.endsWith('"') && l.includes(',')) {
+                    l = l.slice(1, -1).replace(/""/g, '"');
+                }
+                return l;
+            });
+
+            function splitLine(line) {
+                const values = []; let current = '', inQuotes = false;
+                for (let i = 0; i < line.length; i++) {
+                    const char = line[i];
+                    if (char === '"') inQuotes = !inQuotes;
+                    else if (char === ',' && !inQuotes) { values.push(current.trim()); current = ''; }
+                    else current += char;
+                }
+                values.push(current.trim());
+                return values;
+            }
+
+            const headers = splitLine(lines[0]).map(h => h.trim().replace(/^"|"$/g, ''));
+            
+            return lines.slice(1).map((line, idx) => {
+                const values = splitLine(line);
+                const obj = {};
+                headers.forEach((h, i) => { 
+                    let val = (values[i] || '').trim().replace(/^"|"$/g, '');
+                    val = val.replace(/^[?\uFFFD]+/, '₹');
+                    obj[h] = val; 
+                });
+                
+                return {
+                    id: 'sheet-prod-' + idx,
+                    name: obj.Name || obj.name,
+                    description: obj.Description || obj.description,
+                    price: obj.Price || obj.price,
+                    originalPrice: obj.Original_Price || obj.originalPrice || obj.OriginalPrice,
+                    category: obj.Category || obj.category,
+                    status: obj.Status || obj.status || 'Available',
+                    stock: obj.Stock || obj.stock || (obj.Status === 'Sold' ? 'Sold Out' : 'Available'),
+                    image: obj.Image || obj.image,
+                    margin: obj.Gross_Margin || obj.Margin || '85% Gross Margin',
+                    cost: obj.Mfg_Cost || obj.Cost || '₹180',
+                    provenance: obj.Provenance || '100% Reclaimed Denim',
+                    synthesis: obj.Synthesis || 'High-Heat Pressure Matrix',
+                    badge: obj.Badge || obj.Category || 'House Ignis 1-of-1',
+                    discount: obj.Discount || 'HOUSE DISCOUNT'
+                };
+            }).filter(p => p.name && p.name.trim() !== '');
+        }
+
+        // LIVE REAL-TIME DATA LOADER (GOOGLE SHEETS -> LOCAL JSON -> LOCAL FALLBACK)
+        async function loadLiveProducts() {
+            try {
+                // 1. Try Live Google Sheets with Cache Buster
+                const res = await fetch(SHEET_CSV_URL + '&_cb=' + new Date().getTime());
+                if (res.ok) {
+                    const csvText = await res.text();
+                    const sheetProducts = parseCSV(csvText);
+                    if (sheetProducts && sheetProducts.length > 0) {
+                        productsData = sheetProducts;
+                        renderCatalogList();
+                        return;
+                    }
+                }
+            } catch(e) {
+                console.log('Google sheet not reachable, checking products.json');
+            }
+
+            try {
+                // 2. Try products.json
+                const jsonRes = await fetch('products.json?_cb=' + new Date().getTime());
+                if (jsonRes.ok) {
+                    const jsonData = await jsonRes.json();
+                    if (Array.isArray(jsonData) && jsonData.length > 0) {
+                        productsData = jsonData;
+                    }
+                }
+            } catch(e) {
+                // 3. Fallback to default array
+            }
+            renderCatalogList();
+        }
+
+        loadLiveProducts();
     </script>
 </body>
 </html>
