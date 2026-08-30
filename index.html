@@ -1,118 +1,210 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HEATLOOM | The Art of Rebirth</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>HEATLOOM | The Art of Rebirth — House Ignis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #F9F7F4;
-            --charcoal: #1c1c1c;
-            --orange: #c65d3e; 
-            --orange-dark: #a84d32;
-            --warm-light: #e3d3cc;
+            --bg: #0C0B0A;
+            --bg-card: #161513;
+            --bg-card-hover: #1F1D1A;
+            --charcoal: #F5F3EF;
+            --orange: #FF5A00; 
+            --orange-dark: #D94600;
+            --orange-glow: rgba(255, 90, 0, 0.25);
+            --gold: #E5A93C;
+            --warm-light: #DDD5CA;
+            --muted: #8E887F;
             --white: #ffffff;
-            --cream: #f0ede8;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-orange: rgba(255, 90, 0, 0.35);
         }
-        body { font-family: 'Lato', sans-serif; color: var(--charcoal); background: var(--bg); line-height: 1.7; margin: 0; padding: 0; }
+        
+        * { box-sizing: border-box; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--charcoal); background: var(--bg); line-height: 1.7; margin: 0; padding: 0; overflow-x: hidden; }
+        html { scroll-behavior: smooth; }
         
         /* NAVIGATION */
-        nav { position: fixed; top: 0; width: 100%; background: rgba(249,247,244,0.95); backdrop-filter: blur(10px); z-index: 1000; padding: 15px 0; border-bottom: 1px solid rgba(198,93,62,0.2); transition: all 0.3s ease; }
-        nav.scrolled { padding: 10px 0; box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; }
-        .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--charcoal); text-decoration: none; letter-spacing: 1px; }
+        nav { position: fixed; top: 0; width: 100%; background: rgba(12, 11, 10, 0.9); backdrop-filter: blur(16px); z-index: 1000; padding: 16px 0; border-bottom: 1px solid var(--border); transition: all 0.3s ease; }
+        nav.scrolled { padding: 12px 0; background: rgba(12, 11, 10, 0.98); box-shadow: 0 4px 30px rgba(0,0,0,0.6); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 30px; }
+        .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: 2px; }
         .nav-logo span { color: var(--orange); }
-        .nav-links { display: flex; list-style: none; gap: 35px; margin: 0; padding: 0;}
-        .nav-links a { text-decoration: none; color: var(--charcoal); font-size: 0.9rem; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; position: relative; }
+        .nav-links { display: flex; list-style: none; gap: 30px; margin: 0; padding: 0;}
+        .nav-links a { text-decoration: none; color: var(--warm-light); font-size: 0.85rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.3s; position: relative; }
         .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--orange); transition: width 0.3s; }
         .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
         .nav-links a:hover { color: var(--orange); }
         
         /* GENERAL */
-        section { padding: 100px 40px; }
-        .container { max-width: 1100px; margin: 0 auto; }
-        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; margin-top: 0; }
-        h1 { font-size: 3.5rem; line-height: 1.2; }
-        h2 { font-size: 2.2rem; margin-bottom: 25px; line-height: 1.3; }
-        h3 { font-size: 1.4rem; margin-bottom: 15px; }
-        p { margin-bottom: 18px; font-size: 1.05rem; }
-        .btn { display: inline-block; padding: 14px 35px; border: none; border-radius: 50px; font-size: 0.95rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: all 0.3s ease; }
-        .btn-primary { background: var(--orange); color: white; }
-        .btn-primary:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(198,93,62,0.3); }
-        .section-label { text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; color: var(--orange); margin-bottom: 10px; }
+        section { padding: 90px 24px; position: relative; }
+        .container { max-width: 1140px; margin: 0 auto; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; margin-top: 0; color: var(--white); }
+        h1 { font-size: 3.6rem; line-height: 1.15; font-weight: 700; }
+        h2 { font-size: 2.4rem; margin-bottom: 20px; line-height: 1.25; }
+        h3 { font-size: 1.4rem; margin-bottom: 12px; }
+        p { margin-bottom: 18px; font-size: 1.05rem; color: var(--warm-light); }
+        .btn { display: inline-block; padding: 14px 36px; border: none; border-radius: 50px; font-size: 0.9rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: all 0.3s ease; text-align: center; }
+        .btn-primary { background: var(--orange); color: white; box-shadow: 0 4px 20px var(--orange-glow); }
+        .btn-primary:hover { background: var(--orange-dark); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(255,90,0,0.5); }
+        .btn-outline { background: transparent; color: var(--white); border: 1px solid var(--border-orange); }
+        .btn-outline:hover { background: rgba(255,90,0,0.1); border-color: var(--orange); }
+        .section-label { text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; font-weight: 700; color: var(--orange); margin-bottom: 12px; }
         
         /* HERO */
-        #home { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; padding-top: 80px; }
+        #home { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; padding-top: 100px; }
         .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
-        .hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.35); }
-        .hero-content { position: relative; z-index: 2; text-align: center; color: white; max-width: 800px; margin: 0 auto; }
-        .hero-content .logo-img { width: 320px; margin: 0 auto 30px; border-radius: 12px; background: rgba(255,255,255,0.95); padding: 20px; }
-        .hero-content .tagline { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.5rem; color: var(--warm-light); margin-bottom: 35px; }
-        .hero-content p { font-size: 1.15rem; opacity: 0.9; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.25); }
+        .hero-content { position: relative; z-index: 2; text-align: center; color: white; max-width: 860px; margin: 0 auto; }
+        .hero-content .logo-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,90,0,0.12); border: 1px solid var(--border-orange); padding: 8px 22px; border-radius: 30px; margin-bottom: 25px; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+        .hero-content .logo-img { width: 200px; margin: 0 auto 25px; border-radius: 20px; box-shadow: 0 10px 40px var(--orange-glow); }
+        .hero-content .tagline { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.6rem; color: var(--orange); margin-bottom: 25px; }
+        .hero-content p.lead { font-size: 1.2rem; color: var(--warm-light); margin-bottom: 35px; max-width: 680px; margin-left: auto; margin-right: auto; }
+        .hero-actions { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
         
-        /* MISSION */
-        .mission { text-align: center; background: var(--white); }
-        .mission h2 { font-size: 2rem; max-width: 700px; margin: 0 auto 30px; color: var(--charcoal); }
-        .mission p { max-width: 750px; margin: 0 auto 18px; color: #555; }
+        /* LIVE METRIC STRIP (UNIT ECONOMICS & SUSTAINABILITY) */
+        .metric-strip { background: linear-gradient(90deg, #11100E 0%, #1A1815 50%, #11100E 100%); border-top: 1px solid var(--border-orange); border-bottom: 1px solid var(--border-orange); padding: 35px 20px; box-shadow: 0 0 40px rgba(0,0,0,0.8); }
+        .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1140px; margin: 0 auto; text-align: center; }
+        .metric-item { padding: 10px 15px; border-right: 1px solid var(--border); }
+        .metric-item:last-child { border-right: none; }
+        .metric-value { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700; color: var(--orange); line-height: 1.1; margin-bottom: 6px; text-shadow: 0 0 20px var(--orange-glow); }
+        .metric-label { font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--warm-light); }
+        .metric-sub { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
         
-        /* HOW IT WORKS */
-        .how-it-works { background: var(--bg); text-align: center; }
-        .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 50px; }
-        .step-card { padding: 35px 25px; background: var(--white); border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); transition: transform 0.3s; }
-        .step-card:hover { transform: translateY(-5px); }
-        .step-number { width: 50px; height: 50px; background: var(--orange-dark); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin: 0 auto 20px; }
-        
-        /* CORRECTED COMPARISON SLIDER */
-        .comparison-section { background: var(--white); text-align: center; }
-        .slider-wrapper { position: relative; width: 100%; max-width: 800px; margin: 40px auto; aspect-ratio: 1/1; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        /* BRAND AMBASSADOR SPOTLIGHT (ABIDOO) */
+        .ambassador-section { background: radial-gradient(circle at 80% 50%, rgba(255,90,0,0.12) 0%, transparent 60%), #11100F; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .ambassador-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 60px; align-items: center; }
+        .ambassador-img-wrap { position: relative; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.8); border: 1px solid var(--border-orange); }
+        .ambassador-img-wrap img { width: 100%; display: block; object-fit: cover; transition: transform 0.5s ease; }
+        .ambassador-img-wrap:hover img { transform: scale(1.03); }
+        .ambassador-badge { position: absolute; top: 20px; left: 20px; background: rgba(12,11,10,0.85); backdrop-filter: blur(10px); border: 1px solid var(--border-orange); color: var(--gold); padding: 8px 16px; border-radius: 30px; font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+        .ambassador-content .quote-box { background: var(--bg-card); border-left: 4px solid var(--orange); padding: 25px 30px; border-radius: 0 16px 16px 0; margin: 30px 0; }
+        .ambassador-content .quote-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.4rem; color: var(--white); line-height: 1.5; margin: 0 0 12px 0; }
+        .ambassador-content .quote-author { font-size: 0.9rem; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 2px; }
+        .spec-list { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
+        .spec-item { background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 14px 18px; border-radius: 12px; }
+        .spec-item strong { display: block; color: var(--orange); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+        .spec-item span { font-size: 0.85rem; color: var(--muted); }
+
+        /* COMPARISON SLIDER */
+        .comparison-section { background: var(--bg); text-align: center; }
+        .slider-wrapper { position: relative; width: 100%; max-width: 800px; margin: 40px auto; aspect-ratio: 1/1; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 50px rgba(0,0,0,0.9); border: 1px solid var(--border-orange); }
         .slider-img-after, .slider-img-before { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
-        
-        /* This clip-path hides the right side of the Before image perfectly */
         .slider-img-before { z-index: 2; clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%); }
-        
-        .slider-line { position: absolute; top: 0; left: 50%; width: 4px; height: 100%; background: white; z-index: 3; pointer-events: none; box-shadow: 0 0 10px rgba(0,0,0,0.3); }
-        .slider-button { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--charcoal); z-index: 4; pointer-events: none; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .slider-line { position: absolute; top: 0; left: 50%; width: 4px; height: 100%; background: var(--orange); z-index: 3; pointer-events: none; box-shadow: 0 0 15px var(--orange); }
+        .slider-button { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 46px; height: 46px; background: var(--orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: white; z-index: 4; pointer-events: none; box-shadow: 0 4px 15px rgba(0,0,0,0.6); }
         .slider-range { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; z-index: 5; cursor: ew-resize; }
-        
-        .slider-label { position: absolute; top: 20px; padding: 5px 15px; background: rgba(0,0,0,0.6); color: white; border-radius: 20px; font-size: 0.8rem; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; z-index: 3; }
+        .slider-label { position: absolute; top: 20px; padding: 6px 16px; background: rgba(12,11,10,0.85); backdrop-filter: blur(8px); border: 1px solid var(--border-orange); color: white; border-radius: 20px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; z-index: 3; }
         .slider-label.left { left: 20px; }
         .slider-label.right { right: 20px; }
 
-        /* CTA */
-        .cta-banner { background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%); text-align: center; color: white; padding: 80px 40px; }
-        .cta-banner h2 { color: white; }
+        /* THE SCIENCE & USP PROCESS */
+        .how-it-works { background: #11100F; text-align: center; }
+        .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
+        .step-card { padding: 40px 30px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; transition: all 0.3s ease; text-align: left; position: relative; overflow: hidden; }
+        .step-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--orange); opacity: 0.3; transition: opacity 0.3s; }
+        .step-card:hover { transform: translateY(-8px); border-color: var(--border-orange); box-shadow: 0 12px 40px rgba(0,0,0,0.6); }
+        .step-card:hover::before { opacity: 1; }
+        .step-tech-tag { font-size: 0.75rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; display: block; }
+        .step-number { width: 46px; height: 46px; background: rgba(255,90,0,0.15); border: 1px solid var(--border-orange); color: var(--orange); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 20px; }
+
+        /* PRODUCTS COLLECTION: CLEAN NAME-FIRST INTERACTIVE CATALOG */
+        .products-hero { background: var(--bg); text-align: center; }
+        .discount-banner { background: linear-gradient(135deg, rgba(255,90,0,0.2) 0%, rgba(229,169,60,0.15) 100%); border: 1px solid var(--orange); border-radius: 16px; padding: 20px 30px; max-width: 860px; margin: 0 auto 40px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+        .discount-banner .text { text-align: left; }
+        .discount-banner strong { display: block; color: var(--gold); font-size: 1.1rem; letter-spacing: 1px; }
+        .discount-banner span { color: var(--warm-light); font-size: 0.9rem; }
+        .discount-tag { background: var(--orange); color: white; font-size: 0.85rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 15px var(--orange-glow); }
+
+        .catalog-list { display: flex; flex-direction: column; gap: 18px; max-width: 960px; margin: 0 auto; }
+        .catalog-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 26px 32px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: inherit; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+        .catalog-item::before { content: ''; position: absolute; left: 0; top: 0; width: 4px; height: 100%; background: var(--orange); opacity: 0; transition: opacity 0.3s; }
+        .catalog-item:hover, .catalog-item.active { background: var(--bg-card-hover); border-color: var(--border-orange); transform: translateX(8px); box-shadow: 0 10px 35px rgba(0,0,0,0.6); }
+        .catalog-item:hover::before, .catalog-item.active::before { opacity: 1; }
         
-        /* PRODUCTS */
-        .products-hero { text-align: center; background: var(--bg); }
-        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-top: 30px; }
-        .product-card { padding: 30px; background: var(--white); border-radius: 16px; transition: all 0.3s; border: 1px solid transparent; text-align: left; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
-        .product-card:hover { border-color: var(--orange-dark); transform: translateY(-3px); }
-        .product-card .tag { display: inline-block; background: var(--orange-dark); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+        .catalog-left { text-align: left; }
+        .catalog-category { font-size: 0.75rem; font-weight: 700; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; display: block; }
+        .catalog-name { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--white); margin: 0 0 8px; transition: color 0.3s; }
+        .catalog-item:hover .catalog-name { color: var(--orange); }
+        .catalog-badge { display: inline-block; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--warm-light); font-size: 0.7rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; border-radius: 6px; }
         
-                /* CONTACT */
-        .contact-section { background: var(--white); }
+        .catalog-right { text-align: right; display: flex; align-items: center; gap: 25px; }
+        .catalog-prices { text-align: right; }
+        .catalog-price-old { font-size: 0.85rem; color: var(--muted); text-decoration: line-through; display: block; }
+        .catalog-price-new { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--orange); }
+        .catalog-arrow-btn { width: 48px; height: 48px; background: rgba(255,90,0,0.1); border: 1px solid var(--border-orange); border-radius: 50%; color: var(--orange); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: all 0.3s; flex-shrink: 0; }
+        .catalog-item:hover .catalog-arrow-btn, .catalog-item.active .catalog-arrow-btn { background: var(--orange); color: white; transform: translateX(4px); box-shadow: 0 0 20px var(--orange-glow); }
+
+        /* IN-PAGE DEDICATED PRODUCT DOSSIER SHOWCASE */
+        #product-showcase { display: none; margin-top: 50px; scroll-margin-top: 100px; }
+        #product-showcase.active { display: block; animation: fadeInSlide 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes fadeInSlide { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        .showcase-card { background: var(--bg-card); border: 1px solid var(--border-orange); border-radius: 24px; max-width: 1000px; margin: 0 auto; box-shadow: 0 25px 80px rgba(0,0,0,0.9); overflow: hidden; text-align: left; }
+        .showcase-header-bar { background: rgba(0,0,0,0.4); border-bottom: 1px solid var(--border); padding: 18px 30px; display: flex; justify-content: space-between; align-items: center; }
+        .showcase-close-btn { color: var(--warm-light); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: color 0.3s; }
+        .showcase-close-btn:hover { color: var(--orange); }
+
+        .showcase-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 40px; padding: 40px; align-items: center; }
+        .showcase-img-box { border-radius: 20px; overflow: hidden; border: 1px solid var(--border-orange); box-shadow: 0 15px 40px rgba(0,0,0,0.7); max-height: 520px; background: #000; }
+        .showcase-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        
+        .showcase-info .tag { display: inline-block; background: rgba(255,90,0,0.15); border: 1px solid var(--border-orange); color: var(--gold); font-size: 0.75rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 5px 15px; border-radius: 20px; margin-bottom: 12px; }
+        .showcase-info h2 { font-size: 2.2rem; margin-bottom: 15px; color: white; line-height: 1.2; }
+        .showcase-pricing { display: flex; align-items: baseline; gap: 15px; margin-bottom: 20px; background: rgba(255,255,255,0.03); padding: 15px 20px; border-radius: 14px; border: 1px solid var(--border); }
+        .showcase-price-old { font-size: 1.1rem; text-decoration: line-through; color: var(--muted); }
+        .showcase-price-new { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--orange); }
+        .showcase-discount-pill { background: var(--orange-dark); color: white; font-size: 0.75rem; font-weight: 800; padding: 4px 12px; border-radius: 20px; letter-spacing: 1px; }
+
+        .showcase-desc { font-size: 1.05rem; line-height: 1.7; color: var(--warm-light); margin-bottom: 25px; }
+        .showcase-specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 30px; }
+        .showcase-spec-item { background: rgba(0,0,0,0.35); border: 1px solid var(--border); padding: 12px 16px; border-radius: 12px; font-size: 0.85rem; }
+        .showcase-spec-item strong { display: block; color: var(--orange); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+
+        /* SHARK TANK ECONOMICS CALLOUT */
+        .economics-card { background: radial-gradient(circle at center, rgba(255,90,0,0.08) 0%, transparent 70%), #141311; border: 1px solid var(--border-orange); border-radius: 20px; padding: 45px; margin-top: 60px; text-align: center; }
+        .economics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 30px; }
+        .econ-item { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 20px; border-radius: 14px; }
+        .econ-item .num { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); font-weight: 700; margin-bottom: 4px; }
+        .econ-item .label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--warm-light); }
+
+        /* CONTACT */
+        .contact-section { background: #11100F; }
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 40px; }
-        .contact-item { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; padding: 15px 20px; background: var(--bg); border-radius: 12px; }
+        .contact-item { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; padding: 18px 22px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; }
         .contact-item .icon { font-size: 1.5rem; }
-        .contact-form { background: var(--bg); padding: 40px; border-radius: 16px; }
+        .contact-form { background: var(--bg-card); border: 1px solid var(--border); padding: 40px; border-radius: 20px; }
         .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 8px; }
-        .form-group input, .form-group textarea { width: 100%; padding: 12px 16px; border: 2px solid #ddd; border-radius: 10px; font-family: 'Lato', sans-serif; font-size: 0.95rem; box-sizing: border-box; }
-        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--orange); }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--warm-light); margin-bottom: 8px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 14px 18px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; color: white; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.95rem; box-sizing: border-box; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--orange); box-shadow: 0 0 15px var(--orange-glow); }
         .form-group textarea { resize: vertical; min-height: 120px; }
+
         /* FOOTER */
-        footer { background: var(--charcoal); color: white; padding: 60px 40px 30px; }
-        .footer-content { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; }
-        .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.3s; }
+        footer { background: #080706; color: var(--warm-light); padding: 70px 30px 35px; border-top: 1px solid var(--border); }
+        .footer-content { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; }
+        .footer-links a { color: var(--muted); text-decoration: none; transition: color 0.3s; font-size: 0.9rem; }
         .footer-links a:hover { color: var(--orange); }
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); text-align: center; color: rgba(255,255,255,0.4); margin-top: 40px; padding-top: 25px; }
+        .footer-bottom { border-top: 1px solid var(--border); text-align: center; color: var(--muted); margin-top: 50px; padding-top: 25px; font-size: 0.85rem; }
         .footer-bottom .heart { color: var(--orange); }
         
         /* UTILS */
         .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
-    html { scroll-behavior: smooth; } </style>
+        
+        @media (max-width: 860px) {
+            h1 { font-size: 2.6rem; }
+            h2 { font-size: 1.9rem; }
+            .ambassador-grid, .contact-grid, .steps-grid, .metric-grid, .economics-grid, .showcase-grid { grid-template-columns: 1fr; }
+            .catalog-item { flex-direction: column; align-items: flex-start; gap: 15px; padding: 22px; }
+            .catalog-right { width: 100%; justify-content: space-between; margin-top: 10px; }
+            .metric-item { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+            .nav-links { display: none; }
+            .showcase-grid { padding: 25px; gap: 25px; }
+        }
+    </style>
 </head>
 <body>
 
@@ -120,13 +212,12 @@
     <nav id="navbar">
         <div class="nav-container">
             <a href="#home" class="nav-logo">HEAT<span>LOOM</span></a>
-            <div class="hamburger" onclick="toggleMenu()">
-                <span></span><span></span><span></span>
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#products">Products</a></li>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#ambassador">Abidoo</a></li>
+                <li><a href="#about">Transformation</a></li>
+                <li><a href="#science">Science</a></li>
+                <li><a href="#products">Collection</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -134,28 +225,99 @@
 
     <!-- HERO -->
     <section id="home">
-        <div class="hero-bg"><img src="images/hero_banner.jpg" alt="Vintage fabrics"></div>
+        <div class="hero-bg"><img src="images/hero_banner.jpg" alt="Thermal Textile Forge"></div>
         <div class="hero-content fade-in">
-            <div class="logo-img"><img src="images/logo.jpg" alt="HEATLOOM Logo" style="width:100%; display:block;"></div>
+            <div class="logo-badge">PODAR INTERNATIONAL SCHOOL • HOUSE IGNIS</div>
+            <div class="logo-img"><img src="images/logo.jpg" alt="HEATLOOM Logo" style="width:100%; display:block; border-radius:20px;"></div>
             <p class="tagline">The Art of Rebirth.</p>
-            <h1>Sustainable Elegance.</h1>
-            <p>Every garment tells a story. We transform premium pre-owned textiles into 1-of-1 sustainable masterworks for the conscious individual.</p>
-            <a href="#products" class="btn btn-primary">Explore Our Craft</a>
+            <h1>Structural Composite Armor from Reclaimed Denim.</h1>
+            <p class="lead">We synthesize discarded textiles into high-fashion 1-of-1 masterworks using zero-sew joint assembly and high-heat pressure synthesis.</p>
+            <div class="hero-actions">
+                <a href="#products" class="btn btn-primary">View Collection</a>
+                <a href="#ambassador" class="btn btn-outline">Meet Abidoo</a>
+            </div>
         </div>
     </section>
 
-    <!-- COMPARISON SLIDER (WOW FACTOR) -->
+    <!-- LIVE METRIC STRIP (SUSTAINABILITY & UNIT ECONOMICS) -->
+    <div class="metric-strip fade-in">
+        <div class="metric-grid">
+            <div class="metric-item">
+                <div class="metric-value">100%</div>
+                <div class="metric-label">Thermal Sustainability</div>
+                <div class="metric-sub">Zero synthetic virgin inputs</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-value">0 L</div>
+                <div class="metric-label">Water Wasted</div>
+                <div class="metric-sub">Saves 7,500L vs new jeans</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-value">0</div>
+                <div class="metric-label">Toxic Chemical Dyes</div>
+                <div class="metric-sub">Pure mechanical & heat fusion</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-value">0%</div>
+                <div class="metric-label">Landfill Waste</div>
+                <div class="metric-sub">100% Circular Forge Model</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BRAND AMBASSADOR SECTION (PODAR ICON: ABIDOO) -->
+    <section id="ambassador" class="ambassador-section fade-in">
+        <div class="container">
+            <div class="ambassador-grid">
+                <div class="ambassador-img-wrap">
+                    <img src="images/abidoo_ambassador.jpg" alt="Abidoo wearing IGNIS-01 Composite Armor Jacket">
+                    <div class="ambassador-badge">PODAR GLOBAL ICON & BRAND AMBASSADOR</div>
+                </div>
+                <div class="ambassador-content">
+                    <p class="section-label">Podar Icon Spotlight</p>
+                    <h2>HEATLOOM Welcomes Podar's Global Icon — Abidoo</h2>
+                    <p>Representing the cutting-edge spirit of House Ignis, Podar's own icon <strong>Abidoo</strong> headlines the launch of HEATLOOM's flagship composite outerwear series.</p>
+                    
+                    <div class="quote-box">
+                        <p class="quote-text">"Every thread carries a past. We don't hide the wreckage—we put it through the fire."</p>
+                        <div class="quote-author">— Abidoo, Podar Ambassador & Cultural Icon</div>
+                    </div>
+
+                    <div class="spec-list">
+                        <div class="spec-item">
+                            <strong>Flagship Fit</strong>
+                            <span>IGNIS-01 Composite Armor Jacket</span>
+                        </div>
+                        <div class="spec-item">
+                            <strong>Synthesis Tech</strong>
+                            <span>High-Heat Pressure Bonded Facets</span>
+                        </div>
+                        <div class="spec-item">
+                            <strong>Assembly</strong>
+                            <span>Zero-Sew Structural Joints</span>
+                        </div>
+                        <div class="spec-item">
+                            <strong>Exclusivity</strong>
+                            <span>1-of-1 Handcrafted Masterwork</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BEFORE / AFTER COMPARISON SLIDER -->
     <section id="about" class="comparison-section fade-in">
         <div class="container">
-            <p class="section-label">The Transformation</p>
-            <h2>Slide to Reveal The Magic</h2>
-            <p>Drag the slider to see how we take discarded materials and elevate them into high-fashion art.</p>
+            <p class="section-label">Molecular Transformation</p>
+            <h2>The Ashes to The Phoenix</h2>
+            <p>Slide horizontally to witness raw scrap denim synthesize into rigid structural composite armor.</p>
             
             <div class="slider-wrapper">
-                <img src="images/after_jacket.jpg" class="slider-img-after" alt="After Upcycling">
-                <img src="images/before_jacket.jpg" class="slider-img-before" id="sliderImgBefore" alt="Before Upcycling">
-                <div class="slider-label left">The Ashes</div>
-                <div class="slider-label right">The Phoenix</div>
+                <img src="images/after_jacket.jpg" class="slider-img-after" alt="The Phoenix: Composite Armor Jacket">
+                <img src="images/before_jacket.jpg" class="slider-img-before" id="sliderImgBefore" alt="The Ashes: Discarded Raw Denim">
+                <div class="slider-label left">The Ashes (Raw Scraps)</div>
+                <div class="slider-label right">The Phoenix (Fused Armor)</div>
                 <div class="slider-line" id="sliderLine"></div>
                 <div class="slider-button" id="sliderBtn">↔</div>
                 <input type="range" min="0" max="100" value="50" class="slider-range" id="sliderRange">
@@ -163,85 +325,236 @@
         </div>
     </section>
 
-    <!-- HOW IT WORKS -->
-    <section class="how-it-works fade-in">
+    <!-- THE SCIENCE & USP PROCESS -->
+    <section id="science" class="how-it-works fade-in">
         <div class="container">
-            <p class="section-label">The Process</p>
-            <h2>The Art of Rebirth</h2>
+            <p class="section-label">Proprietary Engineering</p>
+            <h2>High-Tech Textile Alchemy</h2>
             <div class="steps-grid">
                 <div class="step-card">
                     <div class="step-number">01</div>
-                    <h3>Sourcing</h3>
-                    <p>We curate high-quality vintage and pre-owned garments, saving premium textiles from the landfill.</p>
+                    <span class="step-tech-tag">Scrap Demolition & Sourcing</span>
+                    <h3>Precision Deconstruction</h3>
+                    <p>We curate discarded heavy-gauge denim textiles, deconstructing seams to isolate ultra-high tensile cotton fibers before landfill degradation.</p>
                 </div>
                 <div class="step-card">
                     <div class="step-number">02</div>
-                    <h3>Deconstruction</h3>
-                    <p>Each piece is carefully unstitched by hand to preserve the integrity of the original heritage fabric.</p>
+                    <span class="step-tech-tag">Thermal Bonding Matrix</span>
+                    <h3>High-Heat Pressure Synthesis</h3>
+                    <p>Layered denim panels undergo thermal bonding under calibrated pressure, forming ultra-durable, zero-sew geometric armor facets.</p>
                 </div>
                 <div class="step-card">
                     <div class="step-number">03</div>
-                    <h3>Rebirth</h3>
-                    <p>A new, 1-of-1 sustainable masterpiece is meticulously sewn together, ready for its second life.</p>
+                    <span class="step-tech-tag">Structural Composite Armor</span>
+                    <h3>Zero-Sew Joint Assembly</h3>
+                    <p>Interlocking geometric facets are fused into ergonomic, wearable streetwear armor with reinforced seam lines and zero toxic dyes.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PRODUCTS -->
+    <!-- PRODUCTS COLLECTION (NAME-ONLY LIST - CLICK TO OPEN IN-PAGE PRODUCT DOSSIER) -->
     <section id="products" class="products-hero fade-in">
         <div class="container">
-            <p class="section-label">The Showcase</p>
+            <p class="section-label">House Ignis 1-of-1 Artifacts</p>
             <h2>Current Collection</h2>
-            <div id="productGrid" class="product-grid"></div>
+            <p style="max-width:650px;margin:0 auto 35px;color:var(--warm-light);">Click on any product name below to reveal its full high-resolution image, material provenance, and technical specifications.</p>
+
+            <div class="discount-banner">
+                <div class="text">
+                    <strong>🔥 HOUSE COMPETITION EXCLUSIVE DISCOUNT ACTIVE</strong>
+                    <span>Subsidized limited drop for Podar students & competition peers. Zero virgin materials, maximum gross margins!</span>
+                </div>
+                <div class="discount-tag">UP TO 52% OFF</div>
+            </div>
+
+            <!-- NAME-ONLY CLEAN CATALOG LIST -->
+            <div class="catalog-list">
+                
+                <!-- PRODUCT 1 -->
+                <div class="catalog-item" id="item-jacket" onclick="selectProduct('jacket')">
+                    <div class="catalog-left">
+                        <span class="catalog-category">01 • Outerwear</span>
+                        <h3 class="catalog-name">IGNIS-01 Composite Armor Jacket</h3>
+                        <span class="catalog-badge">Flagship Piece • 1-of-1</span>
+                    </div>
+                    <div class="catalog-right">
+                        <div class="catalog-prices">
+                            <span class="catalog-price-old">₹2,499</span>
+                            <span class="catalog-price-new">₹1,199</span>
+                        </div>
+                        <div class="catalog-arrow-btn">→</div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT 2 -->
+                <div class="catalog-item" id="item-tote" onclick="selectProduct('tote')">
+                    <div class="catalog-left">
+                        <span class="catalog-category">02 • Everyday Accessories</span>
+                        <h3 class="catalog-name">Aegis Geometric Tote / Armor Bag</h3>
+                        <span class="catalog-badge">Student Favorite • Scrap Denim</span>
+                    </div>
+                    <div class="catalog-right">
+                        <div class="catalog-prices">
+                            <span class="catalog-price-old">₹999</span>
+                            <span class="catalog-price-new">₹499</span>
+                        </div>
+                        <div class="catalog-arrow-btn">→</div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT 3 -->
+                <div class="catalog-item" id="item-vest" onclick="selectProduct('vest')">
+                    <div class="catalog-left">
+                        <span class="catalog-category">03 • Streetwear</span>
+                        <h3 class="catalog-name">Ignis Thermal-Fused Sleeveless Vest</h3>
+                        <span class="catalog-badge">New Drop • High Heat Compression</span>
+                    </div>
+                    <div class="catalog-right">
+                        <div class="catalog-prices">
+                            <span class="catalog-price-old">₹1,499</span>
+                            <span class="catalog-price-new">₹799</span>
+                        </div>
+                        <div class="catalog-arrow-btn">→</div>
+                    </div>
+                </div>
+
+                <!-- PRODUCT 4 -->
+                <div class="catalog-item" id="item-hat" onclick="selectProduct('hat')">
+                    <div class="catalog-left">
+                        <span class="catalog-category">04 • Headwear</span>
+                        <h3 class="catalog-name">Facet-01 Upcycled Denim Bucket Hat</h3>
+                        <span class="catalog-badge">Peer Access Price • Rigid Brim</span>
+                    </div>
+                    <div class="catalog-right">
+                        <div class="catalog-prices">
+                            <span class="catalog-price-old">₹599</span>
+                            <span class="catalog-price-new">₹299</span>
+                        </div>
+                        <div class="catalog-arrow-btn">→</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- IN-PAGE DEDICATED PRODUCT SHOWCASE CONTAINER -->
+            <div id="product-showcase">
+                <div class="showcase-card">
+                    <div class="showcase-header-bar">
+                        <span style="font-size:0.8rem;color:var(--gold);font-weight:700;letter-spacing:2px;text-transform:uppercase;">Artifact Specifications Unlocked</span>
+                        <div class="showcase-close-btn" onclick="hideProductShowcase()">✕ Close View</div>
+                    </div>
+                    <div class="showcase-grid">
+                        <div class="showcase-img-box">
+                            <img id="showcaseImg" src="" alt="Product Showcase">
+                        </div>
+                        <div class="showcase-info">
+                            <div id="showcaseTag" class="tag">HOUSE IGNIS 1-OF-1 ARTIFACT</div>
+                            <h2 id="showcaseTitle">Product Title</h2>
+                            
+                            <div class="showcase-pricing">
+                                <div>
+                                    <span style="font-size:0.75rem;color:var(--muted);display:block;text-transform:uppercase;letter-spacing:1px;">House Discount Price</span>
+                                    <span id="showcasePriceNew" class="showcase-price-new">₹1,199</span>
+                                </div>
+                                <span id="showcasePriceOld" class="showcase-price-old">₹2,499</span>
+                                <span id="showcaseDiscount" class="showcase-discount-pill">52% OFF</span>
+                            </div>
+
+                            <p id="showcaseDesc" class="showcase-desc">Product description goes here.</p>
+
+                            <div class="showcase-specs-grid">
+                                <div class="showcase-spec-item">
+                                    <strong>Manufacturing Cost</strong>
+                                    <span id="showcaseCost">₹180 (Zero Scrap Cost)</span>
+                                </div>
+                                <div class="showcase-spec-item">
+                                    <strong>Gross Profit Margin</strong>
+                                    <span id="showcaseMargin">85% Gross Margin</span>
+                                </div>
+                                <div class="showcase-spec-item">
+                                    <strong>Fabric Provenance</strong>
+                                    <span id="showcaseProvenance">Reclaimed Vintage Denim</span>
+                                </div>
+                                <div class="showcase-spec-item">
+                                    <strong>Synthesis Method</strong>
+                                    <span id="showcaseSynthesis">Zero-Sew Thermal Fusion</span>
+                                </div>
+                            </div>
+
+                            <a id="showcaseOrderBtn" href="mailto:lokuraadi@gmail.com" class="btn btn-primary" style="width:100%;">⚡ Acquire 1-of-1 Piece via Forge</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT ECONOMICS SHARK TANK CALLOUT -->
+            <div class="economics-card fade-in">
+                <p class="section-label">Judges' Business Breakdown</p>
+                <h2>Shark Tank Unit Economics</h2>
+                <p style="max-width:750px;margin:0 auto 20px;">Because our primary raw material is reclaimed fabric waste (<span style="color:var(--gold);font-weight:700;">₹0 Raw Material Cost</span>), HEATLOOM achieves unbeatable unit economics while staying affordable for students.</p>
+                <div class="economics-grid">
+                    <div class="econ-item">
+                        <div class="num">&lt; ₹200</div>
+                        <div class="label">Average Mfg Cost</div>
+                    </div>
+                    <div class="econ-item">
+                        <div class="num">86%</div>
+                        <div class="label">Average Gross Margin</div>
+                    </div>
+                    <div class="econ-item">
+                        <div class="num">₹299</div>
+                        <div class="label">Entry-Level Price Point</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="cta-banner fade-in">
-        <div class="container">
-            <h2 style="color:white;">Ignite the Change</h2>
-            <p>Fashion shouldn't cost the Earth. Support the circular economy today.</p>
-            <a href="mailto:lokuraadi@gmail.com" class="btn btn-primary" style="background:white; color:var(--charcoal);">Get Involved</a>
-        </div>
-    </section>
-
-        <!-- CONTACT -->
+    <!-- CONTACT / GET IN TOUCH -->
     <section id="contact" class="contact-section fade-in">
         <div class="container">
-            <p class="section-label">Get in Touch</p>
-            <h2>Start Your Custom Journey</h2>
+            <p class="section-label">Direct Line to The Forge</p>
+            <h2>Collaborate or Custom Order</h2>
             <div class="contact-grid">
                 <div class="contact-info">
-                    <p>Interested in upcycling a personal garment or collaborating? Reach out to us.</p>
+                    <p>Have old denim or clothes you want synthesized into 1-of-1 composite armor? Reach out to House Ignis.</p>
                     <div class="contact-item">
                         <span class="icon">📍</span>
                         <div>
-                            <strong>Studio Location</strong><br>
-                            Ignis Studio PIS Ambegaon
+                            <strong style="color:var(--white);">Studio Location</strong><br>
+                            <span style="color:var(--muted);">Ignis Studio • PIS Ambegaon</span>
                         </div>
                     </div>
                     <div class="contact-item">
                         <span class="icon">✉️</span>
                         <div>
-                            <strong>Email Us</strong><br>
-                            lokuraadi@gmail.com
+                            <strong style="color:var(--white);">Direct Mail</strong><br>
+                            <a href="mailto:lokuraadi@gmail.com" style="color:var(--orange);text-decoration:none;">lokuraadi@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">🔥</span>
+                        <div>
+                            <strong style="color:var(--white);">House Motto</strong><br>
+                            <span style="color:var(--gold);font-weight:600;">VIGOUR, ENTHUSIASM AND ZEAL</span>
                         </div>
                     </div>
                 </div>
                 <form class="contact-form" action="mailto:lokuraadi@gmail.com" method="post" enctype="text/plain">
                     <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" placeholder="Your Name" required>
+                        <label>Your Name</label>
+                        <input type="text" placeholder="Enter your full name" required>
                     </div>
                     <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" placeholder="Your Email" required>
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Enter your student or personal email" required>
                     </div>
                     <div class="form-group">
-                        <label>Message</label>
-                        <textarea placeholder="Tell us about your garment or idea..." required></textarea>
+                        <label>Order Request / Scraps to Donate</label>
+                        <textarea placeholder="Describe the item you want customized or fabrics to donate..." required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width:100%;">Send Message</button>
+                    <button type="submit" class="btn btn-primary" style="width:100%;">Transmit to Forge</button>
                 </form>
             </div>
         </div>
@@ -251,24 +564,26 @@
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
-                <h3 style="color:white;">HEATLOOM</h3>
-                <p style="font-style:italic;margin-bottom:10px;">The Art of Rebirth.</p>
-                <p>A sustainable fashion initiative by House Ignis. Every garment is a 1-of-1 masterpiece handcrafted from pre-owned fabrics.</p>
+                <h3 style="color:white;font-size:1.8rem;letter-spacing:2px;">HEAT<span style="color:var(--orange);">LOOM</span></h3>
+                <p style="font-style:italic;margin-bottom:10px;color:var(--gold);">The Art of Rebirth.</p>
+                <p>A high-tech sustainable fashion initiative by House Ignis at Podar International School Ambegaon. Transforming discarded textiles into 1-of-1 composite armor.</p>
             </div>
             <div class="footer-links">
-                <h4 style="color:var(--warm-light);">Navigate</h4>
-                <a href="#home">Home</a><br>
-                <a href="#products">Products</a><br>
-                <a href="#contact">Contact</a>
+                <h4 style="color:var(--white);margin-bottom:15px;letter-spacing:1px;">NAVIGATION</h4>
+                <p><a href="#home">Home</a></p>
+                <p><a href="#ambassador">Abidoo Spotlight</a></p>
+                <p><a href="#about">Transformation Slider</a></p>
+                <p><a href="#products">1-of-1 Collection</a></p>
             </div>
             <div class="footer-links">
-                <h4 style="color:var(--warm-light);">Connect</h4>
-                <a href="mailto:lokuraadi@gmail.com">Email Us</a><br>
-                <a href="mailto:lokuraadi@gmail.com">Donate Clothes</a>
+                <h4 style="color:var(--white);margin-bottom:15px;letter-spacing:1px;">CONNECT</h4>
+                <p><a href="mailto:lokuraadi@gmail.com">Order Custom Piece</a></p>
+                <p><a href="mailto:lokuraadi@gmail.com">Donate Denim Scraps</a></p>
+                <p><a href="mailto:lokuraadi@gmail.com">House Ignis Team</a></p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 HEATLOOM — House Ignis. Forged with <span class="heart">♥</span> and reclaimed fabric.</p>
+            <p>© 2026 HEATLOOM — House Ignis • Podar International School Ambegaon. Forged with <span class="heart">♥</span> and thermal science.</p>
         </div>
     </footer>
 
@@ -279,81 +594,118 @@
         const sliderLine = document.getElementById('sliderLine');
         const sliderBtn = document.getElementById('sliderBtn');
 
-        slider.addEventListener('input', (e) => {
-            const val = e.target.value;
-            beforeImg.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
-            sliderLine.style.left = val + '%';
-            sliderBtn.style.left = val + '%';
-        });
-
-        // GOOGLE SHEETS LOGIC
-        const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRuYfI3y30BVALytLyMAxjCvoc821ybIWqLtkGnKXTOuYrz_uEfaAI3mcBUUmqNEYsMATCElu-1iTKh/pub?gid=1121643241&single=true&output=csv';
-
-        const fallbackProducts = [
-            { Name: 'The Patchwork Denim Jacket', Description: 'Reconstructed from 3 different vintage denim pieces.', Price: '₹850', Category: 'Jacket', Status: 'Available', Image: '' },
-            { Name: 'The Sashiko Jeans', Description: 'Artistically repaired with traditional Japanese sashiko stitching.', Price: '₹750', Category: 'Jeans', Status: 'Sold', Image: '' }
-        ];
-
-        function renderProducts(products) {
-            const grid = document.getElementById('productGrid');
-            if (!products || products.length === 0) {
-                grid.innerHTML = '<p style="text-align:center;grid-column:1/-1;color:#999;">No products available right now. Check back soon!</p>';
-                return;
-            }
-            grid.innerHTML = products.map(p => {
-                const isSold = (p.Status || '').toLowerCase() === 'sold';
-                const imgHtml = p.Image ? `<div style="width:100%;height:180px;border-radius:12px;overflow:hidden;margin-bottom:15px;"><img src="`+p.Image+`" style="width:100%;height:100%;object-fit:cover;"></div>` : '';
-                return `<div class="product-card" style="${isSold ? 'opacity:0.7;' : ''}">
-                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-                            <span class="tag" style="${isSold ? 'background:#999;' : ''}">${isSold ? 'Sold' : 'Available'}</span>
-                            ${p.Price ? `<span style="font-family:'Playfair Display',serif;font-weight:700;color:${isSold ? '#999' : 'var(--orange)'};font-size:1.1rem;">${p.Price}</span>` : ''}
-                        </div>
-                        ${imgHtml}
-                        <h3>${p.Name}</h3>
-                        <p>${p.Description}</p>
-                    </div>`;
-            }).join('');
+        if(slider && beforeImg && sliderLine && sliderBtn) {
+            slider.addEventListener('input', (e) => {
+                const val = e.target.value;
+                beforeImg.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
+                sliderLine.style.left = val + '%';
+                sliderBtn.style.left = val + '%';
+            });
         }
-
-        function parseCSV(csv) {
-            const lines = csv.trim().split('\n');
-            if (lines.length < 2) return [];
-            const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
-            return lines.slice(1).map(line => {
-                const values = []; let current = '', inQuotes = false;
-                for (let i = 0; i < line.length; i++) {
-                    const char = line[i];
-                    if (char === '"') inQuotes = !inQuotes;
-                    else if (char === ',' && !inQuotes) { values.push(current.trim()); current = ''; }
-                    else current += char;
-                }
-                values.push(current.trim());
-                const obj = {};
-                headers.forEach((h, i) => { obj[h] = (values[i] || '').replace(/^"|"$/g, ''); });
-                return obj;
-            }).filter(p => p.Name && p.Name.trim() !== '');
-        }
-
-        async function loadProducts() {
-            try {
-                const response = await fetch(SHEET_CSV_URL + '&t=' + new Date().getTime());
-                const csv = await response.text();
-                const products = parseCSV(csv);
-                renderProducts(products.length > 0 ? products : fallbackProducts);
-            } catch (err) {
-                renderProducts(fallbackProducts);
-            }
-        }
-        loadProducts();
 
         window.addEventListener('scroll', () => {
-            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+            const nav = document.getElementById('navbar');
+            if(nav) nav.classList.toggle('scrolled', window.scrollY > 50);
         });
-        const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
+        
+        const observer = new IntersectionObserver(entries => { 
+            entries.forEach(e => { 
+                if (e.isIntersecting) e.target.classList.add('visible'); 
+            }); 
+        }, { threshold: 0.1 });
+        
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // IN-PAGE DEDICATED PRODUCT DOSSIER DATA & SELECTION LOGIC
+        const products = {
+            jacket: {
+                title: "IGNIS-01 Composite Armor Jacket",
+                tag: "FLAGSHIP 1-OF-1 • OUTERWEAR",
+                image: "images/after_jacket.jpg",
+                priceNew: "₹1,199",
+                priceOld: "₹2,499",
+                discount: "52% OFF",
+                desc: "Dual-textured structural jacket constructed with zero-sew thermal-fused denim facets on the right side and deep raw indigo denim on the left. Engineered for high mobility, wind resistance, and zero synthetic waste.",
+                cost: "₹180 (Zero Scrap Cost)",
+                margin: "85% Gross Margin",
+                provenance: "Reclaimed Vintage Levi's Denim",
+                synthesis: "High-Heat Pressure Matrix"
+            },
+            tote: {
+                title: "Aegis Geometric Tote / Armor Bag",
+                tag: "STUDENT DAILY • ACCESSORIES",
+                image: "images/aegis_tote.jpg",
+                priceNew: "₹499",
+                priceOld: "₹999",
+                discount: "50% OFF",
+                desc: "Heavy-duty everyday tote bag constructed from heat-bonded denim triangle scrap panels. Features reinforced ember-orange edge trims, heavy-gauge zipper, and reinforced shoulder straps.",
+                cost: "₹60 (Scrap Material)",
+                margin: "88% Gross Margin",
+                provenance: "Post-Consumer Denim Offcuts",
+                synthesis: "Geometric Panel Bonding"
+            },
+            vest: {
+                title: "Ignis Thermal-Fused Sleeveless Vest",
+                tag: "NEW STREETWEAR DROP",
+                image: "images/ignis_vest.jpg",
+                priceNew: "₹799",
+                priceOld: "₹1,499",
+                discount: "47% OFF",
+                desc: "Lightweight cropped utility vest made from 100% heat-compressed denim offcuts with ergonomic dual front utility pockets and breathable bonded mesh lining.",
+                cost: "₹110 (Recycled Inputs)",
+                margin: "86% Gross Margin",
+                provenance: "100% Reclaimed Denim Offcuts",
+                synthesis: "Multi-Density Compression"
+            },
+            hat: {
+                title: "Facet-01 Upcycled Denim Bucket Hat",
+                tag: "IMPULSE BUY • HEADWEAR",
+                image: "images/facet_hat.jpg",
+                priceNew: "₹299",
+                priceOld: "₹599",
+                discount: "50% OFF",
+                desc: "Structured street bucket hat featuring rigid, heat-bonded geometric denim brim panels with precision embroidered Ignis logo. Designed at an accessible peer-student price point.",
+                cost: "₹40 (Scrap Offcuts)",
+                margin: "87% Gross Margin",
+                provenance: "Tailor Waste Cutaways",
+                synthesis: "Form-Holding Heat Fusion"
+            }
+        };
+
+        function selectProduct(id) {
+            const p = products[id];
+            if (!p) return;
+
+            document.querySelectorAll('.catalog-item').forEach(el => el.classList.remove('active'));
+            const activeItem = document.getElementById('item-' + id);
+            if (activeItem) activeItem.classList.add('active');
+
+            document.getElementById('showcaseImg').src = p.image;
+            document.getElementById('showcaseTitle').textContent = p.title;
+            document.getElementById('showcaseTag').textContent = p.tag;
+            document.getElementById('showcasePriceNew').textContent = p.priceNew;
+            document.getElementById('showcasePriceOld').textContent = p.priceOld;
+            document.getElementById('showcaseDiscount').textContent = p.discount;
+            document.getElementById('showcaseDesc').textContent = p.desc;
+            document.getElementById('showcaseCost').textContent = p.cost;
+            document.getElementById('showcaseMargin').textContent = p.margin;
+            document.getElementById('showcaseProvenance').textContent = p.provenance;
+            document.getElementById('showcaseSynthesis').textContent = p.synthesis;
+            document.getElementById('showcaseOrderBtn').href = `mailto:lokuraadi@gmail.com?subject=Order Request for ${encodeURIComponent(p.title)}&body=Hello House Ignis, I would like to order the ${encodeURIComponent(p.title)} (${p.priceNew}).`;
+
+            const showcase = document.getElementById('product-showcase');
+            showcase.classList.add('active');
+            
+            // Smoothly scroll to the showcase view
+            showcase.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function hideProductShowcase() {
+            const showcase = document.getElementById('product-showcase');
+            showcase.classList.remove('active');
+            document.querySelectorAll('.catalog-item').forEach(el => el.classList.remove('active'));
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     </script>
 </body>
 </html>
-
-
-
