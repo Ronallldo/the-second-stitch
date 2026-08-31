@@ -191,6 +191,104 @@
         .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--orange); box-shadow: 0 0 15px var(--orange-glow); }
         .form-group textarea { resize: vertical; min-height: 120px; }
 
+        /* INTERACTIVE TRANSMISSION / ORDER MODAL */
+        .order-modal-backdrop {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .order-modal-backdrop.open {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        .order-modal-box {
+            background: #181613;
+            border: 1px solid var(--border-orange);
+            box-shadow: 0 20px 70px rgba(255, 90, 0, 0.3), 0 0 100px rgba(0,0,0,0.9);
+            border-radius: 24px;
+            max-width: 580px;
+            width: 100%;
+            padding: 35px;
+            position: relative;
+            text-align: left;
+        }
+        .order-modal-close {
+            position: absolute;
+            top: 20px; right: 22px;
+            font-size: 1.5rem;
+            color: var(--muted);
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+        .order-modal-close:hover { color: var(--orange); }
+        .order-summary-box {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin: 20px 0;
+        }
+        .order-actions-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 22px;
+        }
+        .btn-gmail {
+            background: #EA4335;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+        .btn-gmail:hover { background: #C5221F; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(234,67,53,0.4); }
+        .btn-copy {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--border-orange);
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 13px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        .btn-copy:hover { background: rgba(255,90,0,0.15); color: white; }
+        .btn-default-mail {
+            background: transparent;
+            color: var(--warm-light);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+        .btn-default-mail:hover { border-color: var(--orange); color: var(--orange); }
+
         /* FOOTER */
         footer { background: #080706; color: var(--warm-light); padding: 70px 30px 35px; border-top: 1px solid var(--border); }
         .footer-content { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; }
@@ -428,7 +526,7 @@
                                 </div>
                             </div>
 
-                            <a id="showcaseOrderBtn" href="mailto:lokuraadi@gmail.com" class="btn btn-primary" style="width:100%;">⚡ Acquire 1-of-1 Piece via Forge</a>
+                            <button id="showcaseOrderBtn" onclick="openOrderModal()" class="btn btn-primary" style="width:100%;">⚡ Acquire 1-of-1 Piece via Forge</button>
                         </div>
                     </div>
                 </div>
@@ -476,7 +574,7 @@
                         <span class="icon">✉️</span>
                         <div>
                             <strong style="color:var(--white);">Direct Mail</strong><br>
-                            <a href="mailto:lokuraadi@gmail.com" style="color:var(--orange);text-decoration:none;">lokuraadi@gmail.com</a>
+                            <span style="color:var(--orange);font-weight:600;">lokuraadi@gmail.com</span>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -487,24 +585,71 @@
                         </div>
                     </div>
                 </div>
-                <form class="contact-form" action="mailto:lokuraadi@gmail.com" method="post" enctype="text/plain">
+                <form class="contact-form" id="mainContactForm" onsubmit="handleContactFormSubmit(event)">
                     <div class="form-group">
                         <label>Your Name</label>
-                        <input type="text" placeholder="Enter your full name" required>
+                        <input type="text" id="contactName" placeholder="Enter your full name" required>
                     </div>
                     <div class="form-group">
                         <label>Email Address</label>
-                        <input type="email" placeholder="Enter your student or personal email" required>
+                        <input type="email" id="contactEmail" placeholder="Enter your student or personal email" required>
                     </div>
                     <div class="form-group">
                         <label>Order Request / Scraps to Donate</label>
-                        <textarea placeholder="Describe the item you want customized or fabrics to donate..." required></textarea>
+                        <textarea id="contactMessage" placeholder="Describe the item you want customized or fabrics to donate..." required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width:100%;">Transmit to Forge</button>
+                    <button type="submit" class="btn btn-primary" style="width:100%;">Transmit Order / Message</button>
                 </form>
             </div>
         </div>
     </section>
+
+    <!-- INTERACTIVE ORDER & TRANSMISSION MODAL (WORKS 100% RELIABLY ON ALL DEVICES) -->
+    <div class="order-modal-backdrop" id="orderModal" onclick="closeOrderModal(event)">
+        <div class="order-modal-box" onclick="event.stopPropagation()">
+            <div class="order-modal-close" onclick="closeOrderModal()">&times;</div>
+            <div style="font-size:0.75rem; color:var(--orange); font-weight:800; letter-spacing:2px; text-transform:uppercase;">House Ignis Forge Transmission</div>
+            <h2 id="modalProductTitle" style="font-size:1.8rem; margin:8px 0 15px; color:white;">Order Transmission</h2>
+            
+            <div class="order-summary-box">
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                    <span style="color:var(--muted); font-size:0.85rem;">Target Piece:</span>
+                    <strong id="modalItemName" style="color:var(--gold); font-size:0.9rem;">IGNIS-01 Composite Armor Jacket</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                    <span style="color:var(--muted); font-size:0.85rem;">House Price:</span>
+                    <strong id="modalItemPrice" style="color:var(--orange); font-size:1rem;">₹1,199</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                    <span style="color:var(--muted); font-size:0.85rem;">Studio Destination:</span>
+                    <span style="color:white; font-size:0.85rem;">lokuraadi@gmail.com</span>
+                </div>
+            </div>
+
+            <p style="font-size:0.9rem; color:var(--warm-light); margin-bottom:15px;">Choose your preferred transmission channel to complete your order:</p>
+
+            <div class="order-actions-grid">
+                <!-- Direct Gmail Web (Guaranteed to open in Chrome/Edge/Safari without needing mail apps) -->
+                <a id="btnModalGmail" href="#" target="_blank" class="btn-gmail">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L12 9.545l8.073-6.052C21.69 2.28 24 3.434 24 5.457z"/></svg>
+                    Open Directly in Gmail Web (1-Click)
+                </a>
+
+                <!-- One-Click Copy Full Order Details -->
+                <button type="button" class="btn-copy" onclick="copyOrderDetails(this)">
+                    📋 Copy Order Message & Email Address
+                </button>
+
+                <!-- Default Mail App -->
+                <a id="btnModalDefaultMail" href="#" class="btn-default-mail">
+                    ✉️ Open in Default Mail App (Outlook / Apple Mail)
+                </a>
+            </div>
+            <div id="copyAlert" style="display:none; color:var(--green); font-size:0.85rem; font-weight:700; text-align:center; margin-top:10px;">
+                ✓ Order details and email copied to clipboard!
+            </div>
+        </div>
+    </div>
 
     <!-- FOOTER -->
     <footer>
@@ -523,9 +668,9 @@
             </div>
             <div class="footer-links">
                 <h4 style="color:var(--white);margin-bottom:15px;letter-spacing:1px;">CONNECT</h4>
-                <p><a href="mailto:lokuraadi@gmail.com">Order Custom Piece</a></p>
-                <p><a href="mailto:lokuraadi@gmail.com">Donate Denim Scraps</a></p>
-                <p><a href="mailto:lokuraadi@gmail.com">House Ignis Team</a></p>
+                <p><a href="javascript:void(0)" onclick="openDirectOrder('Custom Piece Request', 'Custom')">Order Custom Piece</a></p>
+                <p><a href="javascript:void(0)" onclick="openDirectOrder('Denim Scrap Donation', 'Donation')">Donate Denim Scraps</a></p>
+                <p><a href="#contact">House Ignis Studio</a></p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -562,10 +707,10 @@
         
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // GOOGLE SHEETS LIVE INVENTORY URL (AUTO SYNC WITHOUT GITHUB RE-UPLOADS)
+        // GOOGLE SHEETS LIVE INVENTORY URL
         const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRuYfI3y30BVALytLyMAxjCvoc821ybIWqLtkGnKXTOuYrz_uEfaAI3mcBUUmqNEYsMATCElu-1iTKh/pub?gid=1121643241&single=true&output=csv';
 
-        // DEFAULT FALLBACK PRODUCTS (USED IF OFFLINE OR SHEET IS EMPTY)
+        // DEFAULT FALLBACK PRODUCTS
         let productsData = [
             {
                 id: "jacket",
@@ -637,6 +782,8 @@
             }
         ];
 
+        let currentSelectedProduct = productsData[0];
+
         function getStatusPill(status, stock) {
             const s = (status || '').toLowerCase();
             if (s.includes('low') || s.includes('1 left') || s.includes('2 left') || s.includes('limited')) {
@@ -680,6 +827,8 @@
             const p = productsData.find((item, idx) => (item.id === id || ('prod-' + idx) === id));
             if (!p) return;
 
+            currentSelectedProduct = p;
+
             document.querySelectorAll('.catalog-item').forEach(el => el.classList.remove('active'));
             const activeItem = document.getElementById('item-' + id);
             if (activeItem) activeItem.classList.add('active');
@@ -714,16 +863,12 @@
             const orderBtn = document.getElementById('showcaseOrderBtn');
             if (isSold) {
                 orderBtn.textContent = "⚡ Request Custom Made-to-Order Recreation";
-                orderBtn.href = `mailto:lokuraadi@gmail.com?subject=Custom Request for Sold Out Piece: ${encodeURIComponent(p.name)}&body=Hello House Ignis, I saw the ${encodeURIComponent(p.name)} is sold out. Can I request a custom recreation?`;
             } else {
                 orderBtn.textContent = "⚡ Acquire 1-of-1 Piece via Forge";
-                orderBtn.href = `mailto:lokuraadi@gmail.com?subject=Order Request for ${encodeURIComponent(p.name)}&body=Hello House Ignis, I would like to order the ${encodeURIComponent(p.name)} (${p.price}).`;
             }
 
             const showcase = document.getElementById('product-showcase');
             showcase.classList.add('active');
-            
-            // Smoothly scroll to the showcase view
             showcase.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
@@ -734,12 +879,88 @@
             document.getElementById('products').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // SMART RESILIENT CSV PARSER (HANDLES BOTH REGULAR & QUOTED MULTI-COLUMN CSVs)
+        // INTERACTIVE ORDER MODAL HANDLERS
+        function openOrderModal() {
+            const p = currentSelectedProduct;
+            const isSold = (p.status || '').toLowerCase().includes('sold');
+            
+            document.getElementById('modalProductTitle').textContent = isSold ? "Custom Recreation Request" : "Acquire 1-of-1 Masterwork";
+            document.getElementById('modalItemName').textContent = p.name;
+            document.getElementById('modalItemPrice').textContent = p.price;
+
+            const subject = encodeURIComponent(`${isSold ? 'Custom Request' : 'Order Request'}: ${p.name} [HEATLOOM Forge]`);
+            const body = encodeURIComponent(`Hello House Ignis Forge Team,\n\nI would like to ${isSold ? 'request a custom recreation of' : 'acquire'} the ${p.name} (${p.price}).\n\nProduct Details:\n- Item: ${p.name}\n- Price: ${p.price}\n- Category: ${p.category || 'House Ignis Collection'}\n\nPlease confirm availability and payment/delivery at PIS Ambegaon.\n\nThank you,\n[Your Name]\n[Your Contact Number / Grade]`);
+
+            // Direct Gmail Web Link (Foolproof on Chrome, Edge, Safari, Mobile)
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=lokuraadi@gmail.com&su=${subject}&body=${body}`;
+            document.getElementById('btnModalGmail').href = gmailUrl;
+
+            // Default Mail App
+            const mailtoUrl = `mailto:lokuraadi@gmail.com?subject=${subject}&body=${body}`;
+            document.getElementById('btnModalDefaultMail').href = mailtoUrl;
+
+            document.getElementById('copyAlert').style.display = 'none';
+            document.getElementById('orderModal').classList.add('open');
+        }
+
+        function openDirectOrder(itemName, price) {
+            currentSelectedProduct = {
+                name: itemName,
+                price: price || 'Custom Quote',
+                category: 'House Ignis Studio',
+                status: 'Available'
+            };
+            openOrderModal();
+        }
+
+        function closeOrderModal() {
+            document.getElementById('orderModal').classList.remove('open');
+        }
+
+        function copyOrderDetails(btn) {
+            const p = currentSelectedProduct;
+            const textToCopy = `To: lokuraadi@gmail.com\nSubject: Order Request for ${p.name}\n\nHello House Ignis,\nI would like to order the ${p.name} (${p.price}). Please connect with me to confirm order.\n\nThank you!`;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const alertEl = document.getElementById('copyAlert');
+                alertEl.style.display = 'block';
+                setTimeout(() => { alertEl.style.display = 'none'; }, 4000);
+            }).catch(() => {
+                alert("Order info ready! Send to: lokuraadi@gmail.com");
+            });
+        }
+
+        function handleContactFormSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const msg = document.getElementById('contactMessage').value;
+
+            currentSelectedProduct = {
+                name: `Custom Request from ${name}`,
+                price: 'Custom Specification',
+                category: 'Direct Forge Inquiry',
+                status: 'Available'
+            };
+
+            const subject = encodeURIComponent(`Forge Transmission from ${name} [HEATLOOM]`);
+            const body = encodeURIComponent(`Sender: ${name}\nEmail: ${email}\n\nMessage / Request:\n${msg}\n\nTransmitted via HEATLOOM Live Storefront.`);
+
+            document.getElementById('modalProductTitle').textContent = "Transmit to Forge";
+            document.getElementById('modalItemName').textContent = `Inquiry from ${name}`;
+            document.getElementById('modalItemPrice').textContent = "Direct Message";
+
+            document.getElementById('btnModalGmail').href = `https://mail.google.com/mail/?view=cm&fs=1&to=lokuraadi@gmail.com&su=${subject}&body=${body}`;
+            document.getElementById('btnModalDefaultMail').href = `mailto:lokuraadi@gmail.com?subject=${subject}&body=${body}`;
+
+            document.getElementById('orderModal').classList.add('open');
+        }
+
+        // SMART RESILIENT CSV PARSER
         function parseCSV(csv) {
             let lines = csv.trim().split('\n');
             if (lines.length < 2) return [];
 
-            // Un-escape outer quotes if whole line was stored in Column A
             lines = lines.map(l => {
                 l = l.trim();
                 if (l.startsWith('"') && l.endsWith('"') && l.includes(',')) {
@@ -791,16 +1012,16 @@
             }).filter(p => p.name && p.name.trim() !== '');
         }
 
-        // LIVE REAL-TIME DATA LOADER (GOOGLE SHEETS -> LOCAL JSON -> LOCAL FALLBACK)
+        // LIVE REAL-TIME DATA LOADER
         async function loadLiveProducts() {
             try {
-                // 1. Try Live Google Sheets with Cache Buster
                 const res = await fetch(SHEET_CSV_URL + '&_cb=' + new Date().getTime());
                 if (res.ok) {
                     const csvText = await res.text();
                     const sheetProducts = parseCSV(csvText);
                     if (sheetProducts && sheetProducts.length > 0) {
                         productsData = sheetProducts;
+                        currentSelectedProduct = productsData[0];
                         renderCatalogList();
                         return;
                     }
@@ -810,17 +1031,15 @@
             }
 
             try {
-                // 2. Try products.json
                 const jsonRes = await fetch('products.json?_cb=' + new Date().getTime());
                 if (jsonRes.ok) {
                     const jsonData = await jsonRes.json();
                     if (Array.isArray(jsonData) && jsonData.length > 0) {
                         productsData = jsonData;
+                        currentSelectedProduct = productsData[0];
                     }
                 }
-            } catch(e) {
-                // 3. Fallback to default array
-            }
+            } catch(e) {}
             renderCatalogList();
         }
 
