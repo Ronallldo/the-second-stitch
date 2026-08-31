@@ -862,9 +862,11 @@
             const isSold = s.includes('sold');
             const orderBtn = document.getElementById('showcaseOrderBtn');
             if (isSold) {
-                orderBtn.textContent = "⚡ Request Custom Made-to-Order Recreation";
+                orderBtn.textContent = "🔔 Please Inform Me When Available (Join Waitlist)";
+                orderBtn.style.background = "linear-gradient(135deg, #E5A93C 0%, #D94600 100%)";
             } else {
                 orderBtn.textContent = "⚡ Acquire 1-of-1 Piece via Forge";
+                orderBtn.style.background = "var(--orange)";
             }
 
             const showcase = document.getElementById('product-showcase');
@@ -884,16 +886,27 @@
             const p = currentSelectedProduct;
             const isSold = (p.status || '').toLowerCase().includes('sold');
             
-            document.getElementById('modalProductTitle').textContent = isSold ? "Custom Recreation Request" : "Acquire 1-of-1 Masterwork";
+            document.getElementById('modalProductTitle').textContent = isSold ? "Restock Notification & Waitlist" : "Acquire 1-of-1 Masterwork";
             document.getElementById('modalItemName').textContent = p.name;
-            document.getElementById('modalItemPrice').textContent = p.price;
+            document.getElementById('modalItemPrice').textContent = isSold ? `${p.price} (Sold Out — Waitlist)` : p.price;
 
-            const subject = encodeURIComponent(`${isSold ? 'Custom Request' : 'Order Request'}: ${p.name} [HEATLOOM Forge]`);
-            const body = encodeURIComponent(`Hello House Ignis Forge Team,\n\nI would like to ${isSold ? 'request a custom recreation of' : 'acquire'} the ${p.name} (${p.price}).\n\nProduct Details:\n- Item: ${p.name}\n- Price: ${p.price}\n- Category: ${p.category || 'House Ignis Collection'}\n\nPlease confirm availability and payment/delivery at PIS Ambegaon.\n\nThank you,\n[Your Name]\n[Your Contact Number / Grade]`);
+            let subject = '';
+            let body = '';
+
+            if (isSold) {
+                subject = encodeURIComponent(`Please Inform Me When Available: ${p.name} [PIS Ambegaon]`);
+                body = encodeURIComponent(`Hello House Ignis Studio (PIS Ambegaon),\n\nI saw that the ${p.name} is currently sold out. Please inform me and notify me as soon as it is available or restocked!\n\nItem Details:\n- Product: ${p.name}\n- Price: ${p.price}\n- Studio Location: PIS Ambegaon\n\nContact Details for Notification:\n- Name: [Your Name]\n- Grade / Section: [Your Class]\n- Phone / Email: [Your Contact Info]\n\nThank you!`);
+            } else {
+                subject = encodeURIComponent(`Order Request: ${p.name} [HEATLOOM Forge - PIS Ambegaon]`);
+                body = encodeURIComponent(`Hello House Ignis Forge Team (PIS Ambegaon),\n\nI would like to acquire the ${p.name} (${p.price}).\n\nProduct Details:\n- Item: ${p.name}\n- House Discount Price: ${p.price}\n- Studio Location: PIS Ambegaon\n\nPlease confirm availability and pickup at PIS Ambegaon.\n\nThank you,\n[Your Name]\n[Your Grade / Contact Number]`);
+            }
 
             // Direct Gmail Web Link (Foolproof on Chrome, Edge, Safari, Mobile)
             const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=lokuraadi@gmail.com&su=${subject}&body=${body}`;
             document.getElementById('btnModalGmail').href = gmailUrl;
+            document.getElementById('btnModalGmail').innerHTML = isSold ? 
+                `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L12 9.545l8.073-6.052C21.69 2.28 24 3.434 24 5.457z"/></svg> Notify Me via Gmail Web (1-Click)` :
+                `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L12 9.545l8.073-6.052C21.69 2.28 24 3.434 24 5.457z"/></svg> Open Directly in Gmail Web (1-Click)`;
 
             // Default Mail App
             const mailtoUrl = `mailto:lokuraadi@gmail.com?subject=${subject}&body=${body}`;
